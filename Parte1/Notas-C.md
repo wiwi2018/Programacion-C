@@ -89,11 +89,31 @@ Cada uno de tales archivo de código fuente contiene funciones que pertenecen a 
 Los archivos fuente del lenguaje C, tienen nombres que terminan en **.c**; los archivos de cabecera tienen nombres que terminan en **.h**. Un archivo fuente junto con los archivos de cabecera incluidos en el mismo se denomina una unidad de traducción **(translation unit)**.
 
 No hay un orden definido para la definición de  las funciones. La función **mcm()** en el código anterior,  también podría haber sido colocado antes de la función **main ()**. Una observación importante es que ninguna  función  se puede definir dentro de otra función.
-El compilador procesa cada archivo fuente en secuencia y  descompone su contenido en *identificadores (tokens)*, como los nombres de las  funciones y operadores. Los tokens pueden ser separados por uno o más espacios en blanco, como el espacio, el  tabulador, o caracteres de nueva línea. Así, sólo el orden de los identificadores en en el archivo importa, debido al  diseño del código fuente, el salto de línea y identación, por ejemplo, no es importante.
+El compilador procesa cada archivo fuente en secuencia y  descompone su contenido en *identificadores (tokens)*, como los nombres de las  funciones y operadores. Los tokens pueden ser separados por uno o más espacios en blanco, como el espacio, el  tabulador, o caracteres de nueva línea. Así, sólo el orden de los identificadores en en el archivo importa, debido al  diseño del código fuente, el salto de línea y identación, por ejemplo, no es importante. Una prueba de esto es el ejemplo dado en el libro **Pointer on C**  de Kenneth Reek.
+
+```c
+#include <stdio.h>
+main(t,_,a)
+char *a;
+{return!0<t?t<3?main(-79,-13,a+main(-87,1-_,
+main(-86, 0, a+1 )+a)):1,t<_?main(t+1, _, a ):3,main ( -94, -27+t, a
+)&&t == 2 ?_<13 ?main ( 2, _+1, "%s %d %d\n" ):9:16:t<0?t<-72?main(_,
+t,"@n'+,#'/*{}w+/w#cdnr/+,{}r/*de}+,/*{*+,/w{%+,/w#q#n+,/#{l,+,/n{n+\
+,/+#n+,/#;#q#n+,/+k#;*+,/'r :'d*'3,}{w+K w'K:'+}e#';dq#'l q#'+d'K#!/\
++k#;q#'r}eKK#}w'r}eKK{nl]'/#;#q#n'){)#}w'){){nl]'/+#n';d}rw' i;# ){n\
+l]!/n{n#'; r{#w'r nc{nl]'/#{l,+'K {rw' iK{;[{nl]'/w#q#\
+n'wk nw' iwk{KK{nl]!/w{%'l##w#' i; :{nl]'/*{q#'ld;r'}{nlwb!/*de}'c \
+;;{nl'-{}rw]'/+,}##'*}#nc,',#nw]'/+kd'+e}+;\
+#'rdq#w! nr'/ ') }+}{rl#'{n' ')# }'+}##(!!/")
+:t<-50?_==*a ?putchar(a[31]):main(-65,_,a+1):main((*a == '/')+t,_,a\
++1 ):0<t?main ( 2, 2 , "%s"):*a=='/'||main(0,main(-61,*a, "!ek;dc \
+i@bK'(q)-[w]*%n+r3#l,{}:\nuwloca-O;m .vpbks,fxntdCeghiry"),a+1);} 
+```
+
 
 **Las directivas de preprocesamiento** son una excepción a esta regla. Estas directivas estan diseñadas para ser ejecutadas por el preprocesador antes que  se compile el programa  y cada una de ellas  ocupa una línea , comenzando con una almohadilla **#**.
 
-Los **comentarios** son  cadenas cerradas ya sea entre  **/*** y ***/**,  o entre // y el final de la línea. En las fases preliminares de traslación del código fuente, antes de generar cualquier código objeto, cada comentario se sustituye por *un espacio*, entonces se ejecutan las directivas de preprocesamiento.
+Los **comentarios** son  cadenas cerradas ya sea entre  **/*** y ** */ **,  o entre // y el final de la línea. En las fases preliminares de traslación del código fuente, antes de generar cualquier código objeto, cada comentario se sustituye por *un espacio*, entonces se ejecutan las directivas de preprocesamiento.
 
 ## Conjunto de Caracteres
 
