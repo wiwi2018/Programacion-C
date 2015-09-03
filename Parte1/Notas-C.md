@@ -97,24 +97,49 @@ Los **comentarios** son  cadenas cerradas ya sea entre  **/*** y ***/**,  o entr
 
 ## Conjunto de Caracteres
 
-ANSI C define dos conjuntos de caracteres. El primero es el *conjunto de caracteres fuente(source  character set) que es el conjunto de caracteres que se pueden utilizar en un archivo fuente. El segundo es el *conjunto de caracteres de ejecución* (execution character set), que consta de todos los caracteres que se interpretan durante la ejecución del programa, como los caracteres  de una cadena constante.
+ANSI C define dos conjuntos de caracteres. El primero es el **conjunto de caracteres fuente(source  character set)** que es el conjunto de caracteres que se pueden utilizar en un archivo fuente. El segundo es el **conjunto de caracteres de ejecución (execution character set)**, que consta de todos los caracteres que se interpretan durante la ejecución del programa, como los caracteres  de una cadena constante.
 
 Cada uno de estos conjuntos de caracteres contiene un *conjunto de caracteres básico*, que incluye lo siguiente:
 - Las 52 letras mayúsculas y minúsculas del alfabeto latino:
 
- A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+	 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
  
-a b c d e f g h i j k l m n o p q r s t u v w x y z
+	a b c d e f g h i j k l m n o p q r s t u v w x y z
 
 - Los 10 dígitos decimales
 
-0 1 2 3 4 5 6 7 8 9
+		0 1 2 3 4 5 6 7 8 9
 
 - Los siguientes 29 caracteres:
 
-! " # % & ' ( ) * + , – . / : ;
+	! " # % & ' ( ) * + , – . / : ;
 
-< = > ? [ \ ] ^ _ { | } ~
+	< = > ? [ \ ] ^ _ { | } ~
 
 - Los  caracteres de espacios en blanco: espacio,tabulador horizontal, tabulador vertical, nueva linea.
+
+En adición,  los caracteres de execución  pueden contener los siguiente
+- El caracter **null \0**, donde termina una cadena de caracteres.
+- Los caracteres de control, representados por **secuencias de escape**, como se muestra a continuación
+ * \a : Alerta(beep).
+ * \b : Retroceso.
+ * \f: retroalimentación.
+ * \n: nueva línea.
+ * \r : retorno de carro.
+ * \' : El caracter '.
+ * \" : El caracter "".
+ * \? : El caracter ?.
+ * \\:  El caracter \.
+ * \o \oo \ooo (o =digito octal): El caracter con este digito octal.
+ * \t: Tabulador horizontal.
+ * \v: Tabulador Vertical.
+ * \xh..(h.. cadena de digitos hexadecimales): El caracter con este código hexadecimal.
+
+Cualquier otro carácter, dependiendo del compilador dado, se pueden utilizar en los comentarios, cadenas, y las constantes de caracteres. Estos pueden incluir el signo dólar o diacríticos, por ejemplo. Sin embargo, el uso de tales caracteres puede afectar a la portabilidad. 
+El conjunto de todos los caracteres utilizables se llama **conjunto de caracteres extendido (extended  character set)**, que  es un superconjunto del conjunto de carácteres básico.
+
+El ANSI 99 proporciona el entero tipo 
+ ```c wchart_t(wide character type)```
+
+que es lo suficientemente grande como para representar cualquier carácter del conjunto de caracteres extendidos. La codificación de caracteres **Unicode** se utiliza a menudo, que  extiende el código ASCII estándar para representar unos 35.000 caracteres de 24 países.
 
