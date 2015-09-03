@@ -1,7 +1,7 @@
 #Notas de C
 
 
-##Introdución
+##Introducción
 
 - - -
 
@@ -82,4 +82,18 @@ int mcm (int a, int b)
 	return (a*b)/m;
 }
 ```
+
+Los **declaraciones(statements)** que conforman las funciones, las declaraciones necesarias del programa  y las directivas de preprocesamiento, forman el código fuente de un programa en C. Para programas pequeños, el código fuente está escrito en un solo *archivo fuente*; para programas muchos más grandes en  C, estos  consisten de  varios archivos, que pueden ser editados y compilados por separado. Ver aquí un [ejemplo del uso de make](http://iie.fing.edu.uy/~vagonbar/gcc-make/make.htm).
+
+Cada uno de tales archivo de código fuente contiene funciones que pertenecen a una unidad lógica, como las funciones para la salida a un terminal, por ejemplo. La información que se necesita en varios archivos fuentes , tales como **declaraciones**, se coloca en  **archivos de cabecera**. Estos pueden ser incluidos en cada archivo fuente a través de la directiva **#include**.
+
+Los archivos fuente del lenguaje C, tienen nombres que terminan en **.c**; los archivos de cabecera tienen nombres que terminan en **.h**. Un archivo fuente junto con los archivos de cabecera incluidos en el mismo se denomina una unidad de traducción **(translation unit)**.
+
+No hay un orden definido para la definición de  las funciones. La función **mcm()** en el código anterior,  también podría haber sido colocado antes de la función **main ()**. Una función no se puede definir dentro de otra función, sin embargo!.
+
+El compilador procesa cada archivo fuente en secuencia y  descompone su contenido en *identificadores (tokens)*, como los nombres de las  funciones y operadores. Los tokens pueden ser separados por uno o más espacios en blanco, como el espacio, el  tabulador, o caracteres de nueva línea. Así, sólo el orden de los identificadores en en el archivo importa. El diseño del código fuente, el salto de línea y identación, por ejemplo, no es importante.
+
+**Las directivas de preprocesamiento** son una excepción a esta regla. Estas directivas estan diseñadas para ser ejecutadas por el preprocesador antes que  se compile el programa  y cada una de ellas  ocupa una línea , comenzando con una almohadilla **#**.
+
+Los **comentarios** son  cadenas cerradas ya sea entre ** /* ** y ** /* **,  o entre **//** y el final de la línea. En las fases preliminares de traslación del código fuente, antes de generar cualquier código objeto, cada comentario se sustituye por *un espacio*, entonces se ejecutan las directivas de preprocesamiento.
 
