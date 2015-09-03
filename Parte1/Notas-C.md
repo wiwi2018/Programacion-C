@@ -1,6 +1,5 @@
 #Notas de C
 
-== ==
 
 ##Introdución
 
@@ -35,7 +34,7 @@ Una función especial es  la que se conoce como **main()**: esta es la primera f
 
 - - -
 
-El código siguiente ilustra, la estructura de un Programa en C. El programa consiste de de las funciones ** main(), mcd(), mcm()** y muestra el MCD y MCM de dos números dados.
+El código siguiente ilustra, la estructura de un Programa en C. El programa consiste de de las funciones **main()**, **mcd()**, **mcm()** y muestra el MCD y MCM de dos números dados.
 
 
 ```c
