@@ -103,10 +103,13 @@ Cada uno de estos conjuntos de caracteres contiene un *conjunto de caracteres b�
 - Las 52 letras mayúsculas y minúsculas del alfabeto latino:
  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 a b c d e f g h i j k l m n o p q r s t u v w x y z
+
 - Los 10 dígitos decimales
 0 1 2 3 4 5 6 7 8 9
+
 - Los siguientes 29 caracteres:
 ! " # % & ' ( ) * + , – . / : ;
 < = > ? [ \ ] ^ _ { | } ~
+
 - Los  caracteres de espacios en blanco: espacio,tabulador horizontal, tabulador vertical, nueva linea.
 
