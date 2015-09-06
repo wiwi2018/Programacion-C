@@ -1,5 +1,7 @@
 % Características de Pandoc en el uso de Markdown
+
 % Basado en las notas de Kurt Pfeifle
+
 % Setiembre del 2015
 
 # Básicos
