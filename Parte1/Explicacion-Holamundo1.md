@@ -1,4 +1,4 @@
-# Otra forma de entender el Hola mundo en C
+## Otra forma de entender el Hola mundo en C
 
 El primer programa del libro de K&R, se llama **hola mundo** Existe una version
 alternativa a este de la siguiente manera
