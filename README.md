@@ -31,10 +31,12 @@
  - El depurador GNU ** gdb**.
  - Estrategias de depuración.
  - Aplicaciones de **gdb**.
- -[Valgrind](http://valgrind.org/).
+ - [Valgrind](http://valgrind.org/).
 
 6. Optimización del rendimiento.
+ 
 7. Introducción a las versiones de control.
+
 8. El Lenguaje de Programación C.
 
 
