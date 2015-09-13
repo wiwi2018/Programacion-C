@@ -39,4 +39,20 @@
 
 8. El Lenguaje de Programación C.
 
+ - Estructura de un programa en C
+ - Tipos de datos númericos.
+ - `size_t` y `ptrdiff_t`
+ - Tipos de dato punto flotante.
+ - Precedencia de operadores.
+ - Estilo de Programación.
+ - Variables.
+ - Entradas y Salidas.
+ - Declaraciones y Estructuras de Control.
+ - Funciones.
+ - Punteros.
+ - Cadenas.
+ - Tipos de datos estructurados: `struct`, `unions`, `Enums`
+ - Uso de `typedef`.
+ - Macros.
+
 
