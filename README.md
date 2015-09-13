@@ -26,12 +26,12 @@
 
 5. Herramientas de depuración
 
-- Depuración en general.
-- Aseveraciones.
-- El depurador GNU ** gdb**.
-- Estrategias de depuración.
-- Aplicaciones de **gdb**.
-- [Valgrind](http://valgrind.org/).
+ - Depuración en general.
+ - Aseveraciones.
+ - El depurador GNU ** gdb**.
+ - Estrategias de depuración.
+ - Aplicaciones de **gdb**.
+ -[Valgrind](http://valgrind.org/).
 
 6. Optimización del rendimiento.
 7. Introducción a las versiones de control.
