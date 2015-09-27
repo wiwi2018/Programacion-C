@@ -144,6 +144,7 @@ En adición,  los caracteres de execución  pueden contener los siguiente
 - El caracter **null \0**, donde termina una cadena de caracteres.
 - Los caracteres de control, representados por **secuencias de escape**, como se muestra a continuación
 
+```
   1.  \a : Alerta(beep).
   2. \b : Retroceso.
   3.  \f: retroalimentación.
@@ -157,7 +158,7 @@ En adición,  los caracteres de execución  pueden contener los siguiente
   11. \t: Tabulador horizontal.
   12.  \v: Tabulador Vertical.
   13.  \xh..(h.. cadena de digitos hexadecimales): El caracter con este código hexadecimal.
-
+```
 Cualquier otro carácter, dependiendo del compilador dado, se pueden utilizar en los comentarios, cadenas, y las constantes de caracteres. Estos pueden incluir el signo dólar o diacríticos, por ejemplo. Sin embargo, el uso de tales caracteres puede afectar a la portabilidad. 
 El conjunto de todos los caracteres utilizables se llama **conjunto de caracteres extendido (extended  character set)**, que  es un superconjunto del conjunto de carácteres básico.
 
@@ -170,5 +171,5 @@ C99 también introduce `secuencias trigráficas`. Esas secuencias pueden ser uti
 
 ```
 Trigrafos     ??=    ??(    ??/   ??)   ??' ??<  ??! ??> ??-
-Significado     #     [       \     ]    ^    {    |   }    ~
+Significado     #     [       \     ]    ^    {    |   }   ~
 ```
