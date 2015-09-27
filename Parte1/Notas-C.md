@@ -144,19 +144,19 @@ En adición,  los caracteres de execución  pueden contener los siguiente
 - El caracter **null \0**, donde termina una cadena de caracteres.
 - Los caracteres de control, representados por **secuencias de escape**, como se muestra a continuación
 
- * \a : Alerta(beep).
- * \b : Retroceso.
- * \f: retroalimentación.
- * \n: nueva línea.
- * \r : retorno de carro.
- * \' : El caracter '.
- * \" : El caracter "".
- * \? : El caracter ?.
- * \\:  El caracter \.
- * \o \oo \ooo (o =digito octal): El caracter con este digito octal.
- * \t: Tabulador horizontal.
- * \v: Tabulador Vertical.
- * \xh..(h.. cadena de digitos hexadecimales): El caracter con este código hexadecimal.
+  1.  \a : Alerta(beep).
+  2. \b : Retroceso.
+  3.  \f: retroalimentación.
+  4. \n: nueva línea.
+  5.  \r : retorno de carro.
+  6.  \' : El caracter '.
+  7.  \" : El caracter "".
+  8.  \? : El caracter ?.
+  9. \\:  El caracter \.
+  10.  \o \oo \ooo (o =digito octal): El caracter con este digito octal.
+  11. \t: Tabulador horizontal.
+  12.  \v: Tabulador Vertical.
+  13.  \xh..(h.. cadena de digitos hexadecimales): El caracter con este código hexadecimal.
 
 Cualquier otro carácter, dependiendo del compilador dado, se pueden utilizar en los comentarios, cadenas, y las constantes de caracteres. Estos pueden incluir el signo dólar o diacríticos, por ejemplo. Sin embargo, el uso de tales caracteres puede afectar a la portabilidad. 
 El conjunto de todos los caracteres utilizables se llama **conjunto de caracteres extendido (extended  character set)**, que  es un superconjunto del conjunto de carácteres básico.
@@ -166,3 +166,9 @@ El ANSI 99 proporciona el entero tipo
 
 que es lo suficientemente grande como para representar cualquier carácter del conjunto de caracteres extendidos. La codificación de caracteres **Unicode** se utiliza a menudo, que  extiende el código ASCII estándar para representar unos 35.000 caracteres de 24 países.
 
+C99 también introduce `secuencias trigráficas`. Esas secuencias pueden ser utilizadas para ingresar caracteres gráficos que no son disponibles en todos los teclados. 
+
+```
+Trigrafos     ??=    ??(    ??/   ??)   ??' ??<  ??! ??> ??-
+Significado     #     [       \     ]    ^    {    |   }    ~
+```
