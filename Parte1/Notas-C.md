@@ -173,3 +173,28 @@ C99 también introduce `secuencias trigráficas`. Esas secuencias pueden ser uti
 Trigrafos     ??=    ??(    ??/   ??)   ??' ??<  ??! ??> ??-
 Significado     #     [       \     ]    ^    {    |   }   ~
 ```
+
+### Identificadores
+
+Los identificadores son nombres de variables, funciones, macros, tipos. Los identificadores tienen cierto tipos de reglas de formación:
+
+- Un identificador consiste de una secuencia de letras (A-Z, a-z), digitos (0-9) y el  símbolo `(_)`.
+- El primer caracter de un identificador no debe ser un dígito.
+- Los identificadores, reconocer los nombres con mayúsculas y minúsculas (case-sensitive).
+- No hay restricción en la longitud de un identificador. Sin embargo, sólo los `31`caracteres tienen significado.
+
+
+Las palabras reservadas(`Keywords`) son reservados y no deben ser usados como identificadores. Presentamos una lista de palabras reservadas en C.
+
+```
+auto    enum     restrict(*)   unsigned
+break   extern    return       void
+case    float     short        volatile
+char    for       signed       while
+const   goto      sizeof       _Bool(*)
+continue if       static       _Complex(*)
+default  inline(*)  struct    _Imaginary(*)
+do        int       switch       double 
+long     typedef     else       register 
+union
+```
