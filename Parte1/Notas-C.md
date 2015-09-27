@@ -93,7 +93,7 @@ El compilador procesa cada archivo fuente en secuencia y  descompone su contenid
 
 Una prueba de esto es el ejemplo dado en el libro **Pointer on C**  de Kenneth Reek.
 
-```c
+```
 #include <stdio.h>
 main(t,_,a)
 char *a;
