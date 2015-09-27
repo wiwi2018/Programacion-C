@@ -1,5 +1,5 @@
 /* Programa en C, para hallar el rango
- * de valores numericos.
+ * y precision de  valores numericos.
 */
 
 
