@@ -166,7 +166,7 @@ const double pi = 3.1415926536;		// Pi es constante
 ```
 
 ```c
-*/
+/*
    Este Programa lee lineas de entrada, desde
   .......
   */
