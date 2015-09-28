@@ -320,10 +320,21 @@ C99 también introduce `secuencias trigráficas`. Esas secuencias pueden ser uti
 Trigrafos     ??=    ??(    ??/   ??)   ??' ??<  ??! ??> ??-
 Significado     #     [       \     ]    ^    {    |   }   ~
 ```
+Trigrafos permiten escribir cualquier programa C utilizando  los caracteres definidos en la norma `ISO/IEC 646`, la norma de 1991 que corresponde a `ASCII de 7 bits`. El preprocesador del compilador reemplaza los trigrafos con sus equivalentes de un solo carácter en la primera fase de compilación. Esto significa que los trigrafos, a diferencia de los dígrafos,  traducen a sus equivalentes de un solo carácter, sin importar dónde ocurren, incluso en las constantes de caracteres, cadenas literales, comentarios y directivas de preprocesamiento.
+
+```c
+printf("Cancelar???(y/n) ");
+
+// Salida
+printf("Cancelar?[y/n) ");
+
+// Salida sin interpretacion de trigrafo.
+printf("Cancelar\?\?\?(y/n) ");
+```
 
 ### Identificadores
 
-Los identificadores son nombres de variables, funciones, macros, tipos. Los identificadores tienen cierto tipos de reglas de formación:
+El término identificador se refiere  a nombres de variables, funciones, macros, estructuras y otros objetos definidos en un programa en C. Los identificadores tienen cierto tipos de reglas de formación:
 
 - Un identificador consiste de una secuencia de letras (A-Z, a-z), digitos (0-9) y el  símbolo `(_)`.
 - El primer caracter de un identificador no debe ser un dígito.
@@ -334,24 +345,79 @@ Los identificadores son nombres de variables, funciones, macros, tipos. Los iden
 Las palabras reservadas(`Keywords`) son reservados y no deben ser usados como identificadores. Presentamos una lista de palabras reservadas en C.
 
 ```
-auto    enum     restrict(*)   unsigned
-break   extern    return       void
-case    float     short        volatile
-char    for       signed       while
-const   goto      sizeof       _Bool(*)
-continue if       static       _Complex(*)
-default  inline(*)  struct    _Imaginary(*)
-do        int       switch       double 
-long     typedef     else       register 
-union
+auto    extern    short      while
+break    float    signed    _Alignas
+case     for      sizeof    _Alignof
+char     goto     static    _Atomic
+const    if       struct    _Bool
+continue inline   switch    _Complex
+default  int      typedef   _Generic
+do      long      union    _Imaginary
+double  register  unsigned   _Noreturn
+else    restrict  void        enum 
+return  _Static  _assert volatile  _Thread_local
 ```
 
+Al elegir identificadores en tus programas,  muchos identificadores ya son usados por la biblioteca estándar de C. Estos incluyen los nombres de funciones de la biblioteca estándar, que no se puede utilizar para nombrar  las funciones que definamos o para las variables globales.
 
-## Categorias y Alcance de Identificadores
+El compilador de C, proporciona un identificador predefinido `__func__`que puedes usar para acceder a una cadena constante conteniendo el nombre de la función. Por ejemplo:
 
-Cada identificador pertenece a exactamente a una de las siguientes categorias:
+```c
+// Ejemplo: C in a Nutshell Prinz- Crawford
+
+#include <stdio.h>
+int test_func( char *s )
+{
+	if( s == NULL) {
+	fprintf( stderr, "%s: argumento de puntero nulo recibido \n", __func__ );
+		return -1;
+	}
+	/* ... */
+}
+```
+
+En este ejemplo, estamos pasando un puntero nulo a la función `test_func`, generando el mensaje de error:
+
+
+```
+test_func: argumento de puntero nulo recibido
+```
+
+## Espacios de nombres
+
+Cada identificador pertenece a exactamente a una de las siguientes categorias, que constituyen los `espacios de nombres`.
 
 - `Label names (Etiqueta de nombres)`.
 -  `Etiqueta (tags)` de estructuras, uniones y enumeraciones. Estos son identificadores que siguen a una de las palabras claves `struct, union` o `enum`.
 -  Nombres de estructuras o miembros de uniones. Cada tipo de estructura o union tiene un espacio de nombres separados para sus miembros.
--  Todos los otros identificadores, llamados `identificadores ordinarios`. 
+-  Todos los otros identificadores, llamados `identificadores ordinarios`.
+
+Identificadores que pertenecen a diferentes espacios de nombres pueden ser el mismo sin causar conflictos. En otras palabras, se puede utilizar el mismo nombre
+para referirse a diferentes objetos, si son de diferentes tipos. Por ejemplo,
+el compilador es capaz de distinguir entre una variable y un label con el mismo nombre. Veamos un ejemplo donde el mismo nombre a una estructura, un elemento en la estructura y una variable
+
+```c
+struct pin { char pin[16]; /* ... */ };
+_Bool check_pin( struct pin *pin )
+{
+	int len = strlen( pin->pin );
+	/* ... */
+}
+```
+
+## Ámbito de identificadores
+
+El ámbito de un identificador se refiere a esa parte de la `unidad de traslación` en
+que el identificador es válido . O para decirlo de otra manera, el ámbito de un identificador es esa parte del programa que puede `"ver"` al identificador.
+
+El tipo de ámbito o alcance siempre está determinado por la ubicación en la que
+se declara el identificador  (a excepción de  `label`, que siempre tiene ámbito de función). Cuatro tipos de ámbitos son posibles:
+
+- Ámbito de Archivo: Si se declara un identificador fuera de todos los bloques y las listas de parámetros, entonces tiene  ámbito de archivo. El ámbito archivo empieza con la declaración del  identificador hasta el final del código fuente.
+
+- Ámbito de bloque: A excepción de `labels (nombres seguidos por un punto y coma)`, los identificadores declarados dentro de un bloque tienen alcance bloque. Puedes utilizar un identificador  desde su declaración hasta el final del bloque más pequeño que contiene esa declaración que es a menudo, pero no necesariamente, el cuerpo de una función. En C99, declaraciones no tienen que ser colocados
+antes de todas las declaraciones en un bloque de función. Los nombres de los parámetros en una función también tienen ámbito de bloque, y son válidos dentro del bloque de la  función correspondiente.
+
+- Ámbito de  prototipo de función: Los nombres de los parámetros de un prototipo de función tienen alcance prototipo  función. Debido a que estos nombres de parámetros no son válidos fuera del propio prototipo, ellos son solo una poco más que comentarios.
+
+- Ámbito de función: Solo los `label names` tiene ámbito de función. Su uso es limitado al bloque de la función donde el label es definido. Los `label names` deben ser únicos dentro de la funció.
