@@ -167,9 +167,10 @@ const double pi = 3.1415926536;		// Pi es constante
 
 ```c
 /*
-   Este Programa lee lineas de entrada, desde
+   Este es un bloque de comentarios
   .......
-  */
+
+*/
 int open( const char *name, int mode, ... /* int permisos*/ )
 ```
 
@@ -182,20 +183,23 @@ area = pi * r * r 				/* Calculo del area*/
 #endif
 ```
 
-
-
-
 En las fases preliminares de traslación del código fuente, antes de generar cualquier código objeto, cada comentario se sustituye por `un espacio`, entonces se ejecutan las directivas de preprocesamiento.
 
 ## Conjunto de Caracteres
 
-ANSI C define dos conjuntos de caracteres. El primero es el **conjunto de caracteres fuente(source  character set)** que es el conjunto de caracteres que se pueden utilizar en un archivo fuente. El segundo es el **conjunto de caracteres de ejecución (execution character set)**, que consta de todos los caracteres que se interpretan durante la ejecución del programa, como los caracteres  de una cadena constante.
+C hace una distinción entre el entorno en el cual el compilador traslada el código fuente de un programa `(translation environment)` y el entorno en el cual el código es ejecutado `(execution environment)`.  De acuerdo a esto C define dos conjuntos de caracteres: el `conjunto de caracteres fuente(source  character set)` que es el conjunto de caracteres que se pueden utilizar en un archivo fuente y  el `conjunto de caracteres de ejecución (execution character set)`, que consta de todos los caracteres que se interpretan durante la ejecución del programa, como los caracteres  de una cadena constante.
 
-Cada uno de estos conjuntos de caracteres contiene un **conjunto de caracteres básico**, que incluye lo siguiente:
+En muchas implementaciones de C, los dos conjuntos de caracteres son idénticos. Si ellos no lo son, entonces el compilador convierte los caracteres en caracteres constantes y cadenas literales en el archivo fuente en elementos correspondientes del  conjunto de caracteres de ejecución.
+
+Cada uno de estos conjuntos de caracteres incluye  un `conjunto de caracteres básico (basic character set)` y `caracteres extendidos(extended character)`. Los caracteres extendidos junto con el conjunto de caracteres básicos  forma el  `conjunto de caracteres extendido (extended  character set)`.
+
+Los conjuntos de caracteres  básico y de ejecución, contienen los siguientes tipos de caracteres
+
+
 - Las 52 letras mayúsculas y minúsculas del alfabeto latino:
 ```
 	 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
- 
+
 	a b c d e f g h i j k l m n o p q r s t u v w x y z
 ```
 - Los 10 dígitos decimales
@@ -208,11 +212,11 @@ Cada uno de estos conjuntos de caracteres contiene un **conjunto de caracteres b
 
 	< = > ? [ \ ] ^ _ { | } ~
 ```
-- Los  caracteres de espacios en blanco: espacio,tabulador horizontal, tabulador vertical, nueva linea.
+- Los  caracteres de espacios en blanco: espacio,tabulador horizontal, tabulador vertical, nueva linea, form feed..
 
 En adición,  los caracteres de execución  pueden contener los siguiente
-- El caracter **null \0**, donde termina una cadena de caracteres.
-- Los caracteres de control, representados por **secuencias de escape**, como se muestra a continuación
+- El caracter `null`, que funciona como una señal que indica donde termina una cadena de caracteres.
+- Los caracteres de control, representados por `secuencias de escape`, como se muestra a continuación
 
 ```
   1.  \a : Alerta(beep).
@@ -229,13 +233,42 @@ En adición,  los caracteres de execución  pueden contener los siguiente
   12.  \v: Tabulador Vertical.
   13.  \xh..(h.. cadena de digitos hexadecimales): El caracter con este código hexadecimal.
 ```
-Cualquier otro carácter, dependiendo del compilador dado, se pueden utilizar en los comentarios, cadenas, y las constantes de caracteres. Estos pueden incluir el signo dólar o diacríticos, por ejemplo. Sin embargo, el uso de tales caracteres puede afectar a la portabilidad. 
-El conjunto de todos los caracteres utilizables se llama **conjunto de caracteres extendido (extended  character set)**, que  es un superconjunto del conjunto de carácteres básico.
 
-El ANSI 99 proporciona el entero tipo 
- ```c wchart_t(wide character type)```
+Los valores numéricos de caracteres actuales, pueden variar de una implementación C en otra. El lenguaje impone las siguientes condiciones:
 
-que es lo suficientemente grande como para representar cualquier carácter del conjunto de caracteres extendidos. La codificación de caracteres **Unicode** se utiliza a menudo, que  extiende el código ASCII estándar para representar unos 35.000 caracteres de 24 países.
+- Cada caracter en el conjunto de caracteres básicos debe ser representable en un byte.
+- El caracter `null` es un byte, en el cual todos los bits son `0`.
+- EL valor de cada dígito decimal después de `0` es mayor por uno, que los dígitos anteriores.
+
+Cualquier otro carácter, dependiendo del compilador dado, se pueden utilizar en los comentarios, cadenas, y las constantes de caracteres. Estos pueden incluir el signo dólar o diacríticos. Sin embargo, el uso de tales caracteres puede afectar a la portabilidad.
+
+### Caracter wchar_t
+
+El ANSI 99 proporciona el tipo
+ ```c 
+ wchart_t(wide character type)
+ ```
+Este tipo, definido en el archivo cabecera `stddef.h`, es lo suficientemente grande como para representar cualquier carácter del conjunto de caracteres extendidos. La  codificación de caracteres `Unicode`  extiende el código ASCII estándar para representar unos 35.000 caracteres de 24 países, cuando esta codificación  es implementada el tipo  `wchar_t` tiene un ancho de 16 o 32 bits y el valor del tipo de
+`wchar_t` representa un caracter unicode. Por ejemplo, el siguiente código inicializa la variable `wc` con la letra griega alfa.
+
+```c
+wchar_t wc = '\x3b1';
+```
+
+Para mejor soporte Unicode, C11 introduce dos tipos más de caracteres `char16_t` y `char32_t`, los cuales son definidos de tipo entero unsigned en el archivo cabecera `uchar.h`.
+
+### Caracteres Multibytes
+
+En el conjunto  de caracteres multibytes, cada carácter se codifica como una secuencia de uno o más bytes. Tanto los conjuntos de caracteres fuente  y de ejecución pueden contener caracteres de multibytes. Si lo hacen, entonces cada caracter en el conjunto de caracteres básico sólo ocupa un byte, y ningún carácter multibyte excepto el carácter nulo puede contener algún byte en el que todos los bits son 0. Los  caracteres multibytes pueden ser usados en caracteres constantes, cadenas literales, identificadores, comentarios y nombre de archivos cabecera.
+
+Los caracteres multibyte están representados por un número de bytes variable. Esta representación hace que las cadenas multibytes sean más complicadas de procesar que las cadenas de caracteres `wchar_t`. Por ejemplo, a pesar de que el carácter A se puede representar con un solo byte, encontrarlo en una cadena multibyte requiere más que una simple comparación byte a byte, debido a que el mismo valor del byte en ciertas localizaciones podría ser parte de un carácter diferente. Los caracteres multibyte están bien adaptados para guardar texto en los archivos, sin embargo. 
+La codificación de caracteres de multibyte es independiente de la arquitectura del sistema, mientras que la codificación para `wchar_t` depende del orden de bytes del sistema.
+
+### Conversión
+
+
+
+
 
 C99 también introduce `secuencias trigráficas`. Esas secuencias pueden ser utilizadas para ingresar caracteres gráficos que no son disponibles en todos los teclados. 
 
