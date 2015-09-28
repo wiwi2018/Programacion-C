@@ -266,7 +266,51 @@ La codificación de caracteres de multibyte es independiente de la arquitectura 
 
 ### Conversión
 
+C proporciona funciones estándar para obtener el valor `wchar_t` de cualquier carácter multibyte y viceversa. Por ejemplo, si el compilador C utiliza los estándar Unicode UTF-16  y UTF-8, la siguiente llamada a la función `wctomb()`  obtiene la  representación multibyte del  caracter griego alfa:
 
+``` c
+wchar_t wc = L'\x3B1'; //letra griega 
+char mbStr[10] = "";
+int nBytes = 0;
+nBytes = wctomb( mbStr, wc );
+if(0 > nBytes)
+puts("No es un caracter multibyte valido en tu localizacion.");
+```
+
+El  array `mbStr` contiene el caracter multibyte  que en este ejemplo es la secuencia `"\XCE\xB1"`. La función `wctomb()`  retorna el valor asignado a la variable `nBytes`, es decir el número de bytes (2) necesarios para representar el caracter multibyte.
+La biblioteca estándar también proporciona funciones de conversión para `char16_t` y `char32_t`, además de funciones como `c16rtomb()`, que devuelven el carácter multibyte que corresponde a un caracter del tipo `char16_t`.
+
+
+### Digrafos y trigrafos
+
+C proporciona representaciones alternativas para un número de símbolos de puntuacion que no están disponibles en todos los teclados. Seis de ellos son los digráficos.
+
+```
+Digrafo  Equivalente
+  <:          [
+  :>          ]
+  <%          {
+  %>          }
+  %:          #
+  %:%:        ##
+```
+
+Estas secuencias no se interpretan como dígrafos si ocurren dentro constantes de caracteres o cadenas literales. En el resto de posiciones, se comportan exactamente como el caracter que representan.
+
+```c
+// Con diagrafos
+
+int arr<::> = <% 10, 20, 30 %>;
+printf( "El segundo elemento del array es <%d>.\n", arr<:1:> );
+
+// Sin digrafos:
+
+int arr[] = { 10, 20, 30 };
+printf( "EL segundo elemento del array es <%d>.\n", arr[1] );
+
+//Salida:
+El segundo elemento del arrays es: 20
+```
 
 
 
