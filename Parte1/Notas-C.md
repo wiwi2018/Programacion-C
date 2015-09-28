@@ -7,7 +7,7 @@
 
 El lenguaje de programación C fue desarrollado en la década de los 70's por Dennis Ritchie en los Laboratorios Bell (Murray Hill, Nueva Jersey) en el proceso de implementación del sistema operativo Unix en un ordenador DEC PDP-11.
 
-C tiene sus orígenes en un lenguaje de programación sin tipo llamado BCPL (Basic Combined Programming Language, desarrollado por M. Richards) y en B (desarrollado por K. Thompson). En 1978, Brian Kernighan y Dennis Ritchie produjeron la primera descripción a disposición del público de C, ahora conocido como el estándar **K & R**.
+C tiene sus orígenes en un lenguaje de programación sin tipo llamado BCPL (Basic Combined Programming Language, desarrollado por M. Richards) y en B (desarrollado por K. Thompson). En 1978, Brian Kernighan y Dennis Ritchie produjeron la primera descripción a disposición del público de C, ahora conocido como el estándar `K & R`.
 
 C es un lenguaje altamente portátil orientado a la arquitectura de las computadoras de hoy en día. El propio lenguaje real es relativamente pequeño y contiene algunos elementos específicos de hardware. Este no incluye declaraciones de entrada/salida o técnicas de gestión de memoria, por ejemplo. Las funciones para abordar estas tareas están disponibles en la extensa biblioteca estándar C.
 
@@ -26,15 +26,15 @@ La norma de 1995 es soportada por  todos los compiladores comunes de C hoy en d�
 
 - - -
 
-Un programa en C se compone de bloques  individuales llamados **funciones**, que pueden invocar uno a  otros. Cada función realiza una tarea determinada. Funciones confeccionados para ciertas tareas  están disponibles en la librería estándar; otras funciones son escritos por el programador según sea necesario.
+Un programa en C se compone de bloques  individuales llamados `funciones`, que pueden invocar uno a  otros. Cada función realiza una tarea determinada. Funciones confeccionados para ciertas tareas  están disponibles en la librería estándar; otras funciones son escritos por el programador según sea necesario.
 
-Una función especial es  la que se conoce como **main()**: esta es la primera función que se invoca cuando un programa se inicia. Todas las demás funciones son **subrutinas**.
+Una función especial es  la que se conoce como `main()`: esta es la primera función que se invoca cuando un programa se inicia. Todas las demás funciones son `subrutinas`.
 
 ## Estructura de un Programa en C
 
 - - -
 
-El código siguiente ilustra, la estructura de un Programa en C. El programa consiste de de las funciones **main()**, **mcd()**, **mcm()** y muestra el MCD y MCM de dos números dados.
+El código siguiente ilustra, la estructura de un Programa en C. El programa consiste de de las funciones `main()`, `mcd()`, `mcm()` y muestra el MCD y MCM de dos números dados. La función ` main()` llama a las funciones  `mcd()` y `mcm()` para calcular el máximo común divisor y mínimo común múltiplo de dos números enteros positivos y entonces llama la función de la librería estándar `printf()` para mostrar el resultado en la consola.
 
 
 ```c
@@ -83,13 +83,53 @@ int mcm (int a, int b)
 }
 ```
 
-Los **declaraciones(statements)** que conforman las funciones, las declaraciones necesarias del programa  y las directivas de preprocesamiento, forman el código fuente de un programa en C. Para programas pequeños, el código fuente está escrito en un solo **archivo fuente**; para programas muchos más grandes en  C, estos  consisten de  varios archivos, que pueden ser editados y compilados por separado. Ver aquí un [ejemplo del uso de make](http://iie.fing.edu.uy/~vagonbar/gcc-make/make.htm).
+Nota que el compilador necesita una `declaración ` a priori	 para cada función llamada. Los prototipos de `mcd()` y `mcm()` proporcionan la información necesaria para compilar la declaración que llama a las funciones.
 
-Cada uno de tales archivo de código fuente contiene funciones que pertenecen a una unidad lógica, como las funciones para la salida a un terminal, la información que se necesita en varios archivos fuentes, tales como **declaraciones**, se coloca en  **archivos de cabecera**, estas declaraciones pueden ser incluidas en cada archivo fuente a través de la directiva **#include**. 
-Los archivos fuente del lenguaje C, tienen nombres que terminan en **.c**; los archivos de cabecera tienen nombres que terminan en **.h**. Un archivo fuente junto con los archivos de cabecera incluidos en el mismo se denomina una unidad de traducción **(translation unit)**.
 
-No hay un orden definido para la definición de  las funciones. La función **mcm()** en el código anterior,  también podría haber sido colocado antes de la función **main ()**. Una observación importante es que ninguna  función  se puede definir dentro de otra función.
-El compilador procesa cada archivo fuente en secuencia y  descompone su contenido en **identificadores (tokens)**, como los nombres de las  funciones y operadores. Los tokens pueden ser separados por uno o más espacios en blanco, como el espacio, el  tabulador, o caracteres de nueva línea. Así, sólo el orden de los identificadores en en el archivo importa, debido al  diseño del código fuente, el salto de línea y identación, por ejemplo, no es importante. 
+Los prototipos de las funciones de la librería estándar son encontrados en los archivos de cabecera estándar. Debido a que el archivo cabecera `stdio.h` contiene el prototipo de la función `printf`, la `directiva de preprocesador #include <stdio.h>` declara la función indirectamente, direccionando el preprocesador del compilador a insertar el contenido de la función.
+
+No hay un orden establecido  para la definición de  las funciones. La función `mcm()` en el código anterior, podría haber sido colocada antes de la función `main ()`. Una observación importante es que ninguna  función  se puede definir dentro de otra función, tu puedes definir una variable local dentro del bloque de una función, pero no una función local.
+
+### Código fuente
+
+Los `declaraciones` que conforman las funciones, las declaraciones globales del programa  y las directivas de preprocesamiento, forman el código fuente de un programa en C. Para programas pequeños, el código fuente está escrito en un solo `archivo fuente`; para programas muchos más grandes en  C, estos  consisten de  varios archivos, que pueden ser editados y compilados por separado. Ver aquí un [ejemplo del uso de make](http://iie.fing.edu.uy/~vagonbar/gcc-make/make.htm).
+
+Debido a que las definiciones de funciones, generalmente dependen de la directiva de preprocesador y declaraciones globales, los archivos de código fuente tienen la siguiente estructura interna:
+
+- Directivas de preprocesador.
+- Declaraciones globales.
+- Definición de funciones.
+
+El soporte de la programación modular de C,  permite organizar un programa en muchos archivos fuentes y archivos de cabecera como se desee. Cada archivo fuente contiene funciones que son lógicamente relacionadas. Por ejemplo
+
+```c
+//mcd.c Imprime el mcd de dos numeros
+// usa mcd1.c para el calculo
+
+#include <stdio.h>
+int mcd (int a, int b);
+
+int main(void){
+.....
+// Todo lo que se ha escrito en el ejemplo anterior
+.....
+}
+```
+
+```c
+// mcd1.c Calcula el mcd de dos numeros
+// llamada por main() en mcd.c
+
+int mcd (int a, int b)
+{
+// Todo lo que se ha escrito en el ejemplo anterior
+}
+```
+
+
+Cuando un programa consiste de varios archivos fuentes, tu necesitas declarar las mismas funciones, las variables globales y declarar las mismas macros y constantes en muchos de los archivos. Esas  declaraciones y definiciones se coloca en un tipo de `archivo de cabecera`, que es más o menos constante en el programa. Por simplicidad y consistencia esta información pueden ser escritas en un `archivo cabecera` y entonces referenciar el `archivo cabecera` usando  la directiva `#include` en cada archivo fuente. Los archivos de cabecera tienen nombres que terminan en `.h` y todo archivo fuente de C, termina con una extensión `.c`.
+
+Cada  archivo fuente junto con los archivos de cabecera incluidos en el mismo se denomina una `unidad de traslación (translation unit)`. El compilador procesa cada archivo fuente en secuencia y  descompone su contenido en `identificadores (tokens)`, unidades semanticas pequeñas como los nombres de las  funciones y operadores. Un número de caracteres de espacios en blanco entre sucesivos  tokens son permitidos, dando libertad en el formato de tu código fuente. No  hay reglas para saltos de línea o indentación y se pueden usar  espacios en blanco, espacio de tabulador, o caracteres de nueva línea.
 
 Una prueba de esto es el ejemplo dado en el libro **Pointer on C**  de Kenneth Reek.
 
@@ -113,9 +153,39 @@ i@bK'(q)-[w]*%n+r3#l,{}:\nuwloca-O;m .vpbks,fxntdCeghiry"),a+1);}
 ```
 
 
-**Las directivas de preprocesamiento** son una excepción a esta regla. Estas directivas estan diseñadas para ser ejecutadas por el preprocesador antes que  se compile el programa  y cada una de ellas  ocupa una línea , comenzando con una almohadilla **#**.
+`Las directivas de preprocesamiento` son una excepción a esta regla. Estas directivas estan diseñadas para ser ejecutadas por el preprocesador antes que  se compile el programa  y cada una de ellas  ocupa una línea , comenzando con una almohadilla `#`.
 
-Los **comentarios** son  cadenas cerradas ya sea entre  **/*** y ** */ **,  o entre // y el final de la línea. En las fases preliminares de traslación del código fuente, antes de generar cualquier código objeto, cada comentario se sustituye por *un espacio*, entonces se ejecutan las directivas de preprocesamiento.
+
+
+### Comentarios
+
+Los `comentarios` son  cadenas cerradas usadas para documentar código fuente. Hay dos maneras de insertar comentarios en C: `bloque de comentarios`  que inician con  `/*` y terminan con ` */ `   y `linea de comentarios`  que empiezan con `//` y finalizan con un salto de  línea. Agunos ejemplos:
+
+```c
+const double pi = 3.1415926536;		// Pi es constante
+```
+
+```c
+*/
+   Este Programa lee lineas de entrada, desde
+  .......
+  */
+int open( const char *name, int mode, ... /* int permisos*/ )
+```
+
+Si queremos comentar parte de un programa que contiene bloques de comentarios, podemos utilizar un condicional de la directiva de preprocesador.
+
+```c
+#if 0
+const double pi = 3.1415926536;  /*PI es constante*/
+area = pi * r * r 				/* Calculo del area*/
+#endif
+```
+
+
+
+
+En las fases preliminares de traslación del código fuente, antes de generar cualquier código objeto, cada comentario se sustituye por `un espacio`, entonces se ejecutan las directivas de preprocesamiento.
 
 ## Conjunto de Caracteres
 
@@ -198,3 +268,13 @@ do        int       switch       double
 long     typedef     else       register 
 union
 ```
+
+
+## Categorias y Alcance de Identificadores
+
+Cada identificador pertenece a exactamente a una de las siguientes categorias:
+
+- `Label names (Etiqueta de nombres)`.
+-  `Etiqueta (tags)` de estructuras, uniones y enumeraciones. Estos son identificadores que siguen a una de las palabras claves `struct, union` o `enum`.
+-  Nombres de estructuras o miembros de uniones. Cada tipo de estructura o union tiene un espacio de nombres separados para sus miembros.
+-  Todos los otros identificadores, llamados `identificadores ordinarios`. 
