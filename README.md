@@ -60,3 +60,4 @@
 - [Notas sobre C](http://www.cs.yale.edu/homes/aspnes/classes/223/notes.html)
 - [Una introducción a los punteros](http://www.codeproject.com/Articles/627/A-Beginner-s-Guide-to-Pointers).
 - [Articulo sobre punteros](http://bitflop.com/tutorials/pointers-in-c.html).
+- [Linux y otros lenguajes](http://www.cs.swarthmore.edu/~newhall/unixlinks.html#lang).
