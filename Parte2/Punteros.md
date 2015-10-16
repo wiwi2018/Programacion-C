@@ -87,3 +87,79 @@ Algunas observaciones:
 ![Notacion](g5.png "Notacion")
 
 - El valor de una variable de puntero es simplemente una colección de bits  hasta que una indirección se lleva a cabo . Cuando se realiza indirección una flecha sólida es utilizada para mostrar lo que realmente ocurrió. Tenga en cuenta que la flecha se origina en el interior de la caja, ya que representan  el valor almacenado en esa variable. También, las flechas apuntan a una localización, no al valor de la localización. Esta notación implica que siguiendo la flecha con indirección produce un L-Valor.
+
+
+## Puntero no inicializado y ilegal
+
+Un error
+
+```c
+int *a;
+...
+*a = 12;
+```
+
+donde declaramos una  variable pero no hay una  manera de predecir dónde se almacena el valor 12. Una variable puntero no es diferente de cualquier otra variable en este aspecto. Si la variable es estática, se inicializa a cero; pero si la variable es automática, no se inicializa en absoluto. En ninguno de los casos declarando un puntero a un entero `crea`  memoria para el almacenamiento de un número entero.
+
+Cuando la asignación es llevada a cabo y si  tienes suerte, el valor inicial  será una dirección ilegal y la asignación provocará un fallo que termina el programa. En los	 sistema UNIX, este error  es llamado `segmentation violation` o `memory fault` y indica que estas accediendo a una localización fuera de la memoria asignada a tu programa por ejemplo.
+
+
+## Puntero a void
+
+
+## Punteros a punteros
+
+Consideremos las siguientes declaraciones:
+
+```c
+int a = 12;
+int *b = &a;
+```
+
+que permiten asignar memoria como se muestra en la siguiente figura
+
+![Asignacion de memoria](g6.png "Asignación de  memoria")
+
+
+Supongamos que una tercera variable llamada `c` es inicializada con esta declaración
+
+```c
+c = &b;
+```
+
+Aquí la memoria deberia verse como:
+
+![Doble indirección](g7.png "Doble indirección")
+
+La variable `b` es un puntero a un entero, así que cualquier cosa que apunta a `b` debe ser un puntero a un 'puntero a un entero' o de manera más general, un puntero a un puntero.
+
+La declaración
+
+```c
+int **c = &b;
+```
+
+dice que `c**` es del tipo entero.  La siguiente tabla lista algunas expresiones que ayuda a ilustrar estos conceptos; las expresiones asume esas declaraciones
+
+```c
+int a = 12;
+int *b = &a;
+int **c = &b;
+```
+
+
+```
+Expresión			Expresiones equivalentes
+	a					  12
+    b					  &a
+    *b 					a, 12
+    c					  &b
+    *c					  b, &a
+    **c					*b, a, 12
+```
+
+
+Una nueva expresión aparece en esta tabla (la última) así que vamos a explicar que es. El operador `*` tiene una asociatividad de derecha a izquierda , por lo que esta expresión es equivalente a `*(*c)`. Debemos evaluarlo desde adentro hacia afuera.
+
+`* c` tomamos la ubicación que   `c` apunta,  que sabemos que es la variable `b`. La segunda indirección nos lleva a donde esta ubicación apunta, el cual es `a`.
+
