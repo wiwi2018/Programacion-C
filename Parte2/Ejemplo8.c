@@ -1,23 +1,16 @@
-/* El siguiente programa es un ejemplo en que se manipulan punteros
- con varios niveles
- de indireccion
- */
+/* Uso de puntero a void. Un puntero a int es 
+* asignado a un puntero a void  y entonces regresa
+* a puntero a int-
+*/
 
 #include <stdio.h>
-int main()
-{
-		int i;
-		int *ptrToi;
-		int **ptrToPtrToi;
 
-		ptrToPtrToi = &ptrToi;
-		ptrToi  = &i;
+main(){
 
-		i = 10;        // Asignacion directa
-		*ptrToi = 20;  // Asignacion indirecta
-		**ptrToPtrToi = 30; // Asignacion con doble indireccion
-
-		return 0;
+int num;
+int *pi = &num;
+printf("Valor de pi: %p\n", pi);
+void* pv = pi;
+pi = (int*) pv; // cast
+printf("Valor de pi: %p\n", pi);
 }
-
-
