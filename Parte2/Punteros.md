@@ -140,6 +140,20 @@ Algunas observaciones:
 El valor de una variable de puntero es simplemente una colección de bits  hasta que una indirección se lleva a cabo . Cuando se realiza la  indirección una flecha sólida es utilizada para mostrar lo que realmente ocurrió. Tenga en cuenta que la flecha se origina en el interior de la caja, ya que representan  el valor almacenado en esa variable. También, las flechas apuntan a una localización, no al valor de la localización. Esta notación implica que siguiendo la flecha con indirección produce un L-Valor.
 
 
+### Ejemplo
+
+```c
+#include<stdio.h>
+
+int main(){
+	int *ptr;
+	int val = 1;
+	ptr = &val;
+	int deref = *ptr;
+	printf("%d\n", deref);
+}
+
+```
 ## Puntero no inicializado y ilegal
 
 ```c
@@ -209,6 +223,21 @@ Primero el operador `*` genera la dirección donde la variable `a` es almacenada
 
 Esta expresión  implica más operaciones y a  menos que el compilador (o optimizador) se da cuenta de lo que estás haciendo y descarte operaciones adicionales, el código objeto resultante será más grande y más lento. Peor aún, los operadores adicionales hacen que el código fuente sea más difícil de leer. Por esta razón, nadie (intencionalmente) utiliza la expresión como `*&a`.
 
+
+### Ejemplo
+
+```c
+#include<stdio.h>
+
+int main(){
+	int *ptr;
+	int val = 1;
+	ptr = &val;
+	printf("dereferenciando *ptr = %d\n", *ptr);
+	printf("dereferenciando la direccion de val *(&val) = %d\n", *(&val));
+}
+```
+
 ## Puntero constante
 
 Asumiendo que la variable `a` es almacenada en la localización, que hace esta declaración?
@@ -228,6 +257,7 @@ Si se quiere almacenar 25 en la localización  100, se debe  usar un  `cast`
 El `cast` convierte el valor de 100 desde un 'entero' un 'puntero a un entero'. Es válido aplicar indirecciones a esta expresión, así si `a` es almacenado en la localización 100, esta declaración almacena el valor de 25 en `a`. Pero rara vez se necesitará esta técnica. En efecto:
 Como se mencionó anteriormente, no se puede predecir dónde en memoria el compilador elegira poner una variable específica, por lo que  no se sabe su dirección antes de tiempo. Es fácil obtener la dirección de una variable con el operador `&`, pero la expresión no se puede evaluar hasta que el programa se ejecute, por lo que es demasiado tarde para copiar la respuesta en el código fuente como una constante literal.
 
+`
 ## Punteros a punteros
 
 Consideremos las siguientes declaraciones:
