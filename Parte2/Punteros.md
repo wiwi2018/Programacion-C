@@ -181,6 +181,31 @@ dependiente  de la implementación. En algunas máquinas, la indirección accede
 
 Este comportamiento es muy lamentable, ya que el programa si contiene errores,  la máquina los oculta, con lo que los errores son más difíciles de encontrar. En otras máquinas, la indirección en un puntero NULL provoca un fallo que termina el programa. Es mucho mejor que ocultarlo, porque el programador puede entonces corregirlo más fácilmente.
 
+### Ejemplo
+
+```c
+#include<stdio.h>
+
+int main(){
+
+  int *uninit; 
+  int *nullptr = 0;
+  void *vptr; 
+  int val = 1;
+  int *iptr;
+  int *backptr;
+
+  iptr = &val;
+  vptr = iptr;
+  printf("iptr=%p, vptr=%p\n", (void *)iptr, (void *)vptr);
+
+  backptr = vptr;
+  printf("*backptr=%d\n", *backptr);
+
+  printf("uninit=%p, nullptr=%p\n", (void *)uninit, (void *)nullptr);
+
+}
+```
 
 ## Punteros, indirección y L-valores
 
@@ -314,3 +339,19 @@ Una nueva expresión aparece en esta tabla (la última) así que vamos a explica
 
 `* c` tomamos la ubicación que   `c` apunta,  que sabemos que es la variable `b`. La segunda indirección nos lleva a donde esta ubicación apunta, que  es el valor de `a`.
 
+### Ejemplo
+
+```c
+#include<stdio.h>
+
+int main(){
+
+	int val = 1;
+	int *ptr = 0;
+	int type
+	int **ptr2ptr = 0;
+	ptr = &val;
+	ptr2ptr = &ptr;
+	printf("&ptr=%p, &val=%p\n", (void *)&ptr, (void *)&val);
+	printf("ptr2ptr=%p, *ptr2ptr=%p, **ptr2ptr=%d\n", (void *)ptr2ptr, (void *)*ptr2ptr, **ptr2ptr);
+```
