@@ -45,6 +45,44 @@ Este hecho conduce a una conclusión importante: `el tipo de un valor no puede s
 este valor puede ser interpretado con distinto formato y interpretaciones pueden manejar estos `bits` de distinta forma. Es por ello declarar `c` como `float` causa que el compilador genere instrucciones de punto flotante.
 
 
+## L- Valor y R-Valor
+
+Un `L-Valor` es algo que puede aparecer en el lado izquierdo de un signo igual. Un `R-valor` es algo que puede aparecer en el lado derecho de un signo igual. Un ejemplo
+
+```c
+i = j + 12;
+```
+
+`i` es un `L-valor` por que identifica un lugar donde puede ser almacenado. `j + 12` es un `R-valor`por que designa un valor.
+
+Esta asignación es ilegal
+
+```c
+j + 12 = i;
+```
+
+Notemos que cuando el computador evalua `j +12` el resultado debe existir en alguna parte en la máquina. Sin embargo, no hay manera de que sea programador puede predecir donde el resultado estará o referirse a la misma localización más tarde. En consecuencia, esta expresión no es un `L-valor`. Las constante literal no son `L-valores` para la misma razón.
+
+Suena como si las variables  se pueden usar como `L-valor`, pero las expresiones no puede ser `L-valor`, pero esta afirmación no es del todo exacto. El  `L-valor`en la asignación a continuación es una expresión:
+
+```c
+int a[30];
+...
+a[b + 10] = 0;
+```
+
+Los subíndices son  de hecho un operador de manera que el constructor de la izquierda es una expresión, sin embargo, es un legítimo `L-valor`, ya que identifica una ubicación específica que podemos referirnos a más tarde en el programa. Por ejemplo:
+
+```c
+int a, *pi;
+...
+pi = &a;
+*pi = 20;
+```
+
+
+El segundo asignamiento  es donde está la acción: el valor de la izquierda es claramente una expresión, sin embargo, es un `L-valor`. ¿Por qué?. El valor en el  puntero `pi` es la dirección de una localizacion  específica en la memoria, y el operador `*` dirige a la máquina a esa ubicación. Cuando se utiliza como un `L-valor`, esta expresión especifica la ubicación a ser modificado. Cuando se utiliza como un `R-valor`, se obtiene el valor  almacenado en esa ubicación.
+
 ## Contenido de una variable Puntero
 
 Las variables `d` y `e` fueron declaradas como punteros y son inicialiazadas con la dirección de otra variable. La inicialización es hecha con el operador `&`, que produce la `dirección de memoria` de su operando.
