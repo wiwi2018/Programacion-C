@@ -106,6 +106,18 @@ Cuando la asignación es llevada a cabo y si  tienes suerte, el valor inicial  s
 
 ## Puntero a void
 
+La norma define un puntero NULL como el  valor de un puntero que no apunta a nada en absoluto. Para hacer una variable  puntero NULL se  asigna el valor cero, y para probar si es una variable de puntero NULL se compara con cero. La elección del valor cero es una convención del  código fuente; internamente, el valor de un puntero NULL en realidad podría ser algo diferente. En este caso, el compilador se encarga de la traducción entre cero y el valor interno.
+
+El concepto de un puntero NULL es bastante útil porque te da una manera para especificar que un puntero en particular no está señalando a nada en absoluto. Por ejemplo, una función cuyo trabajo es buscar en un arreglo para un valor específico puede devolver un puntero al elemento del arreglo que fue encontrado. Si no hay ningún elemento del arreglo contenido en  el valor correcto, un puntero NULL podría ser devuelto en su lugar. Esta técnica permite que el valor de retorno expresa dos piezas diferentes de información. Primero fue un elemento encontrado?. En segundo lugar, si se ha encontrado un elemento, que estaba considerado?.
+
+la indirección a  un puntero  da el valor al que apunta. Pero el puntero nulo, por definición, apunta a nada en absoluto. Por lo tanto, es ilegal hacer una indirección a un puntero NULL. Antes de hacer una indirección de un puntero, primero debe asegurarse de que no es NULL.
+
+¿Qué sucede si la indirección  se realiza en un puntero NULL? El resultado es
+dependiente  de la implementación. En algunas máquinas, la indirección accede a la localización de memoria cero. El compilador asegura que no existan  variables almacenadas en la ubicación cero, pero la máquina no le impide el acceso o la modificación de esa localización.
+
+Este comportamiento es muy lamentable, ya que el programa si contiene errores, pero la máquina los oculta , con lo que los errores son más difíciles de encontrar.
+
+En otras máquinas, la indirección en un puntero NULL provoca un fallo que termina el programa. Es mucho mejor que ocultarlo, porque el programador puede entonces corregirlo más fácilmente.
 
 ## Punteros a punteros
 
@@ -152,7 +164,7 @@ int **c = &b;
 Expresión			Expresiones equivalentes
 	a					  12
     b					  &a
-    *b 					a, 12
+    *b 					  a, 12
     c					  &b
     *c					  b, &a
     **c					*b, a, 12
