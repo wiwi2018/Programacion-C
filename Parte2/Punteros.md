@@ -185,7 +185,7 @@ Expresión			L-valor				Localización indicada
    d*				  Si				  a
 ```
 
-Una variable puntero se pueden utilizar como `L-valor`, no porque sea un puntero sino porque son variables. Aplicando la  indirección  a una variable puntero indica que debemos seguir el puntero. Esa indirección identifica una localización de memoria específica y así podemos usar el resultado de una expresión de indirección como un `L-valor`. Siga estas declaraciones
+Una variable puntero se pueden utilizar como `L-valor`, no porque sea un puntero sino porque es una  variable. Aplicar la  indirección  a una variable puntero indica que debemos seguir el puntero. Esa indirección identifica una localización de memoria específica y así podemos usar el resultado de una expresión de indirección como un `L-valor`. Sigamos  estas declaraciones
 
 ```c
 *d = 10 - *d;
@@ -195,7 +195,7 @@ d = 10 - *d;
 La primera declaración contiene dos indirecciones. La expresión de la derecha esta siendo utilizada como un `R-valor`, por lo que se obtiene el valor en la localización a la que  d apunta (el valor de a). La indirección de la izquierda se está utilizando como una `L-valor`, por lo que la localización a la cual apunta d (que es a) recibe el nuevo valor calculado por el lado derecho.
 
 
-La segunda afirmación es ilegal porque especifica que una cantidad entera `(10 -d*)` sea almacenada en una variable puntero. El compilador nos ayuda  cuando tratamos de usar una variable que es incompatible con su tipo. Esas advertencias y mensaje de error son tus 'amigos'. A pesar de que  preferiríamos no tener que hacer frente a cualquier mensaje de este tipo, es una buena idea corregir el error de inmediato, sobre todo con mensajes de advertencia que no abortan la compilación. Es mucho más fácil solucionar problemas cuando el compilador le diga exactamente dónde están los problemas que  para depurar el programa después; el depurador no puede determinar con tanta precisión  un problema como lo puede hacer  el compilador.
+La segunda afirmación es ilegal porque especifica que una cantidad entera `(10 -d*)` sea almacenada en una variable puntero. El compilador nos ayuda  cuando tratamos de usar una variable que es incompatible con su tipo. Esas advertencias y mensaje de error son tus 'amigos'. A pesar de que  preferiríamos no tener que hacer frente a cualquier mensaje de este tipo, es una buena idea corregir el error de inmediato, sobre todo los mensajes de advertencia que no abortan la compilación. Es mucho más fácil solucionar problemas cuando el compilador le diga exactamente dónde están los problemas que   depurar el programa después; el depurador no puede determinar con tanta precisión  un problema como lo puede hacer  el compilador.
 
 ## Punteros, indirección  y variables
 
@@ -225,14 +225,8 @@ Si se quiere almacenar 25 en la localización  100, se debe  usar un  `cast`
 ```c
 *(int *)100 = 25;
 ```
-El `cast` convierte el valor de 100 desde un 'entero' un 'puntero a un entero'. Es válido aplicar indirecciones a esta expresión, así si `a` es almacenado en la localización 100, esta declaración almacena el valor de 25 en `a`. Pero rara vez se necesitará esta técnica. En efecto
-
+El `cast` convierte el valor de 100 desde un 'entero' un 'puntero a un entero'. Es válido aplicar indirecciones a esta expresión, así si `a` es almacenado en la localización 100, esta declaración almacena el valor de 25 en `a`. Pero rara vez se necesitará esta técnica. En efecto:
 Como se mencionó anteriormente, no se puede predecir dónde en memoria el compilador elegira poner una variable específica, por lo que  no se sabe su dirección antes de tiempo. Es fácil obtener la dirección de una variable con el operador `&`, pero la expresión no se puede evaluar hasta que el programa se ejecute, por lo que es demasiado tarde para copiar la respuesta en el código fuente como una constante literal.
-
-La única razón de este ejemplo es su utilidad cuando se necesita acceder una localización especifica en memoria por dirección, lo que no se hace cuando queremos acceder a una variable, sino acceder el hardware.
-
-
-
 
 ## Punteros a punteros
 
