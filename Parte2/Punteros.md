@@ -146,9 +146,13 @@ El valor de una variable de puntero es simplemente una colección de bits  hasta
 #include<stdio.h>
 
 int main(){
+
+	// Declaramos un variable ptr que almacena la direccion de un tipo entero
 	int *ptr;
 	int val = 1;
+    // asignamos a ptr la direccion de la variable val
 	ptr = &val;
+    // dereferenciamos y conseguimos el valor en la direccion almacenada en ptr
 	int deref = *ptr;
 	printf("%d\n", deref);
 }
@@ -188,20 +192,23 @@ Este comportamiento es muy lamentable, ya que el programa si contiene errores,  
 
 int main(){
 
-  int *uninit; 
-  int *nullptr = 0;
-  void *vptr; 
+  int *uninit; // puntero sin inicializar
+  int *nullptr = 0;  // inicializamos a cero, esto deberia ser NULL
+  void *vptr;     // declaramos un puntero de tipo void.
   int val = 1;
   int *iptr;
   int *backptr;
 
+  // tipo void puede almacenar un puntero o referencia
   iptr = &val;
   vptr = iptr;
   printf("iptr=%p, vptr=%p\n", (void *)iptr, (void *)vptr);
 
+  // asignar puntero void de nuevo a un puntero int y dereferenciamos
   backptr = vptr;
   printf("*backptr=%d\n", *backptr);
 
+  // imprimimos null y punteros no inicializados
   printf("uninit=%p, nullptr=%p\n", (void *)uninit, (void *)nullptr);
 
 }
@@ -258,6 +265,8 @@ int main(){
 	int *ptr;
 	int val = 1;
 	ptr = &val;
+
+    // imprimimos los valores dereferenciados
 	printf("dereferenciando *ptr = %d\n", *ptr);
 	printf("dereferenciando la direccion de val *(&val) = %d\n", *(&val));
 }
@@ -348,7 +357,8 @@ int main(){
 
 	int val = 1;
 	int *ptr = 0;
-	int type
+	// declaramos una variable ptr2ptr que almacena el valor en la direccion
+    // de un *int el cual almacena el valor en la direccion de un entero
 	int **ptr2ptr = 0;
 	ptr = &val;
 	ptr2ptr = &ptr;
