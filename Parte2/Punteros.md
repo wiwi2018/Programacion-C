@@ -77,7 +77,7 @@ j + 12 = i;
 
 Notemos que cuando el computador evalua `j +12` el resultado debe existir en alguna parte en la máquina. Sin embargo, no hay manera de que el  programador puede predecir donde el resultado estará o referirse a la misma localización más tarde. En consecuencia, esta expresión no es un `L-valor`. Las constante literales no son `L-valores` por la misma razón.
 
-Esto suena como si las variables solo  se pueden usar como `L-valor`, y las expresiones no puede ser `L-valor`, pero esta afirmación no es del todo exacto. El  `L-valor`en la asignación a continuación es una expresión:
+Esto suena como si las variables solo  se pueden usar como `L-valor`, y las expresiones no puede ser `L-valor`, pero esta afirmación no es del todo exacta. El  `L-valor`en la declaración a continuación es una expresión:
 
 ```c
 int a[30];
@@ -94,7 +94,7 @@ pi = &a;
 *pi = 20;
 ```
 
-El segundo asignamiento  es donde está la acción: el valor de la izquierda es claramente una expresión, sin embargo, es un `L-valor`. ¿Por qué?. El valor en el  puntero `pi` es la dirección de una localizacion  específica en la memoria, y el operador `*` dirige a la máquina a esa ubicación. Cuando se utiliza como un `L-valor`, esta expresión especifica la ubicación a ser modificado. Cuando se utiliza como un `R-valor`, se obtiene el valor  almacenado en esa ubicación.
+El segundo asignamiento  es donde está la acción: el valor de la izquierda es claramente una expresión, sin embargo, es un `L-valor`. ¿Por qué?. El valor en el  puntero `pi` es la dirección de una localizacion  específica en la memoria, y el operador `*` dirige a la máquina a esa ubicación. Cuando se utiliza como un `L-valor`, esta expresión especifica la ubicación a ser modificada. Cuando se utiliza como un `R-valor`, se obtiene el valor  almacenado en esa ubicación.
 
 ## Contenido de una variable Puntero
 
@@ -116,7 +116,7 @@ El valor de  `a` es 112, el valor de `b` es -1 y el valor de `c` es 3.14. El val
 
 ## Operador indirección
 
-El proceso de seguir un puntero a la ubicación a la que apunta es llamado `indirección` o `dereferenciando el puntero`. La operación que lleva a cabo la `indirección` es `*`.
+El proceso de seguir un puntero a la ubicación a la que apunta es llamado `indirección` o `dereferenciando el puntero`. La operación que lleva a cabo la `indirección` es `*`. Aquí algunos ejemplos usando las declaraciones de la expresión anterior
 
 ```
 Expresión			R-Valor 			Tipo
@@ -129,7 +129,7 @@ Expresión			R-Valor 			Tipo
    *e				   3.14				float
 ```
 
-El valor de `d`  es 100. Cuando aplicamos el operador indirección a `d` significa ir a la localización 100 en memoria y buscar allí. Así el R-valor de `*d` es 112, el contenido en la localización 100. El L-Valor es la localización 100.
+El valor de `d`  es 100. Cuando aplicamos el operador indirección a `d` significa ir a la localización 100 en memoria y buscar allí. Así el R-valor de `*d` es 112, el contenido en la localización 100. El `L-Valor` es la localización 100.
 
 Algunas observaciones:
 
@@ -156,18 +156,83 @@ Cuando la asignación es llevada a cabo, el valor inicial  será una dirección 
 
 ## Puntero a void
 
-La norma define un puntero NULL como el  valor de un puntero que no apunta a nada en absoluto. Para hacer una variable  puntero NULL se  asigna el valor cero, y para probar si es una variable de puntero NULL se compara con cero. La elección del valor cero es una convención del  código fuente; internamente, el valor de un puntero NULL en realidad podría ser algo diferente. En este caso, el compilador se encarga de la traducción entre cero y el valor interno.
+La norma define un puntero NULL como el  valor de un puntero que no apunta a nada en absoluto. Para hacer una variable  puntero NULL se  asigna el valor cero y para probar si es una variable de puntero NULL se compara con cero. La elección del valor cero es una convención del  código fuente; internamente, el valor de un puntero NULL en realidad podría ser algo diferente. En este caso, el compilador se encarga de la traducción entre cero y el valor interno.
 
 El concepto de un puntero NULL es bastante útil porque te da una manera para especificar que un puntero en particular no está señalando a nada en absoluto. Por ejemplo, una función cuyo trabajo es buscar en un arreglo para un valor específico puede devolver un puntero al elemento del arreglo que fue encontrado. Si no hay ningún elemento del arreglo, un puntero NULL podría ser devuelto en su lugar.
 
-la indirección a  un puntero  da el valor al que apunta. Pero el puntero nulo, por definición, apunta a nada en absoluto. Por lo tanto, es ilegal hacer una indirección a un puntero NULL. Antes de hacer una indirección de un puntero, primero debe asegurarse de que no es NULL.
+La indirección a  un puntero  da el valor al que apunta. Pero el puntero nulo, por definición, apunta a nada en absoluto. Por lo tanto, es ilegal hacer una indirección a un puntero NULL. Antes de hacer una indirección de un puntero, primero debe asegurarse de que no es NULL.
 
 ¿Qué sucede si la indirección  se realiza en un puntero NULL? El resultado es
 dependiente  de la implementación. En algunas máquinas, la indirección accede a la localización de memoria cero. El compilador asegura que no existan  variables almacenadas en la ubicación cero, pero la máquina no le impide el acceso o la modificación de esa localización.
 
-Este comportamiento es muy lamentable, ya que el programa si contiene errores,  la máquina los oculta, con lo que los errores son más difíciles de encontrar.
+Este comportamiento es muy lamentable, ya que el programa si contiene errores,  la máquina los oculta, con lo que los errores son más difíciles de encontrar. En otras máquinas, la indirección en un puntero NULL provoca un fallo que termina el programa. Es mucho mejor que ocultarlo, porque el programador puede entonces corregirlo más fácilmente.
 
-En otras máquinas, la indirección en un puntero NULL provoca un fallo que termina el programa. Es mucho mejor que ocultarlo, porque el programador puede entonces corregirlo más fácilmente.
+
+## Punteros, indirección y L-valores
+
+Sean las declaraciones, basadas en los ejemplos anteriores
+
+```c
+int *a;
+int *d = &a;
+```
+considere las siguientes expresiones
+
+```
+Expresión			L-valor				Localización indicada
+   a				  Si				  a
+   d				  Si				  d
+   d*				  Si				  a
+```
+
+Una variable puntero se pueden utilizar como `L-valor`, no porque sea un puntero sino porque son variables. Aplicando la  indirección  a una variable puntero indica que debemos seguir el puntero. Esa indirección identifica una localización de memoria específica y así podemos usar el resultado de una expresión de indirección como un `L-valor`. Siga estas declaraciones
+
+```c
+*d = 10 - *d;
+d = 10 - *d;
+```
+
+La primera declaración contiene dos indirecciones. La expresión de la derecha esta siendo utilizada como un `R-valor`, por lo que se obtiene el valor en la localización a la que  d apunta (el valor de a). La indirección de la izquierda se está utilizando como una `L-valor`, por lo que la localización a la cual apunta d (que es a) recibe el nuevo valor calculado por el lado derecho.
+
+
+La segunda afirmación es ilegal porque especifica que una cantidad entera `(10 -d*)` sea almacenada en una variable puntero. El compilador nos ayuda  cuando tratamos de usar una variable que es incompatible con su tipo. Esas advertencias y mensaje de error son tus 'amigos'. A pesar de que  preferiríamos no tener que hacer frente a cualquier mensaje de este tipo, es una buena idea corregir el error de inmediato, sobre todo con mensajes de advertencia que no abortan la compilación. Es mucho más fácil solucionar problemas cuando el compilador le diga exactamente dónde están los problemas que  para depurar el programa después; el depurador no puede determinar con tanta precisión  un problema como lo puede hacer  el compilador.
+
+## Punteros, indirección  y variables
+
+Sea la siguiente expresión que explica la relación entre punteros, indirección y variables
+
+```c
+*&a = 25;
+```
+
+Primero el operador `*` genera la dirección donde la variable `a` es almacenada, el cual es un puntero constante. Entonces el operador `*` va hacia la localización cuya dirección es dado como operando. En esta expresión, el operando es la dirección de `a`, así que el valor 25 es almacenado en `a`.
+
+Esta expresión  implica más operaciones y a  menos que el compilador (o optimizador) se da cuenta de lo que estás haciendo y descarte operaciones adicionales, el código objeto resultante será más grande y más lento. Peor aún, los operadores adicionales hacen que el código fuente sea más difícil de leer. Por esta razón, nadie (intencionalmente) utiliza la expresión como `*&a`.
+
+## Puntero constante
+
+Asumiendo que la variable `a` es almacenada en la localización, que hace esta declaración?
+
+```c
+*100 = 25;
+```
+Esto se ve como una asignación de 25 a `a`, ya que `a` es la variable a la localización 100. Pero no es así. La declaración es inválida ya que el literal 100 es de tipo entero y la indirección solo puede llevar expresiones de tipo puntero.
+
+
+
+Si se quiere almacenar 25 en la localización  100, se debe  usar un  `cast`
+
+```c
+*(int *)100 = 25;
+```
+El `cast` convierte el valor de 100 desde un 'entero' un 'puntero a un entero'. Es válido aplicar indirecciones a esta expresión, así si `a` es almacenado en la localización 100, esta declaración almacena el valor de 25 en `a`. Pero rara vez se necesitará esta técnica. En efecto
+
+Como se mencionó anteriormente, no se puede predecir dónde en memoria el compilador elegira poner una variable específica, por lo que  no se sabe su dirección antes de tiempo. Es fácil obtener la dirección de una variable con el operador `&`, pero la expresión no se puede evaluar hasta que el programa se ejecute, por lo que es demasiado tarde para copiar la respuesta en el código fuente como una constante literal.
+
+La única razón de este ejemplo es su utilidad cuando se necesita acceder una localización especifica en memoria por dirección, lo que no se hace cuando queremos acceder a una variable, sino acceder el hardware.
+
+
+
 
 ## Punteros a punteros
 
