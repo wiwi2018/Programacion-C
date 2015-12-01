@@ -1,16 +1,32 @@
-/* Usando la declaracion if*/
+/* Uso del if-else utilizando la funcion srand
+*/
 
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 
-main()
-{
-  int i;
-  printf("Los enteros que pueden ser divididos por 2 y 3 \n");
-  printf("(en el rango de  0 a 100) es:\n");
-  for (i=0; i<=100; i++){
-    if ((i%2 == 0) && (i%3 == 0))
-      printf("   %d\n", i);
-   }
+int main(void) {
+  int j1= 0;
+  int j2 = 0;
+  
+  srand(time(NULL));
+  j1= 1 + rand() % 10;
 
+  int intentos = 4; /* Intentos que tenemos */
+
+  while (intentos) {
+      printf("Adivina un numero entre , 1 - 10: ");
+      scanf("%d", &j2);
+      
+      if(j2 < j1)
+	  printf("El numero que elegistes es muy bajo\n");
+      else if(j2 > j1)
+	  printf("El numero que elegistes es muy alto\n");
+      else {
+	  printf("Acertastes\n");
+	  return 0;
+      }
+      intentos--; 
+  }
   return 0;
 }
