@@ -72,6 +72,7 @@
 - [GDB](http://www.thegeekstuff.com/2014/03/few-gdb-commands/).
 - [Como evitar la fuga de memoria (Memory Leak)](https://mousomer.wordpress.com/2010/11/03/simple-rules-to-avoid-memory-leaks-in-c/).
 - [Depuracion en c/c++](http://www.cs.yale.edu/homes/aspnes/pinewiki/C%282f%29Debugging.html).
+- [El arte perdido del empaquetado en C](http://www.catb.org/esr/structure-packing/).
 
 
 
