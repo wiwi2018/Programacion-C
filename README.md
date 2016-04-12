@@ -57,6 +57,9 @@
 
 ## Lista de Libros de C
 
+- [Versión preliminar del libro de C de Jens Gustedt: Modern C](http://icube-icps.unistra.fr/img_auth.php/d/db/ModernC.pdf).
+- [Libro online de C de Zed A. Shaw](http://c.learncodethehardway.org/book/).
+
 
 ## Algunos artículos importantes
 - [Notas sobre C](http://www.cs.yale.edu/homes/aspnes/classes/223/notes.html)
