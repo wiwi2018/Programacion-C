@@ -59,6 +59,7 @@
 
 - [Versión preliminar del libro de C de Jens Gustedt: Modern C](http://icube-icps.unistra.fr/img_auth.php/d/db/ModernC.pdf).
 - [Libro online de C de Zed A. Shaw](http://c.learncodethehardway.org/book/).
+- [Lecturas del curso Effective Programming in C and Unix de Carnegie Mellon ](https://www.cs.cmu.edu/~guna/15-123S11/).
 
 
 ## Algunos artículos importantes
