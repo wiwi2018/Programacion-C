@@ -78,5 +78,24 @@
 - [Depuracion en c/c++](http://www.cs.yale.edu/homes/aspnes/pinewiki/C%282f%29Debugging.html).
 - [El arte perdido del empaquetado en C](http://www.catb.org/esr/structure-packing/).
 
+## Herramientas 
+
+### Editor Vim
+
+[vim](http://www.vim.org/), un editor de texto que dispone de diferentes modos entre los que se alternan ciertas operaciones, comunes entre los programadores. No obstante, debido a su eficiencia, a su variedad de añadidos ("plugins")", y a sus posibilidades de personalización vim es uno de los editores de texto más populares para programadores y usuarios de sistemas tipo Unix (junto con Emacs*).
+
+Existe un tutorial, que se puede utilizar dentro de Linux (Ubuntu 14.04), escribiendo en el terminal.
+
+```bash
+c-lara@Lara:~$ vimtutor
+```
+
+Otras fuentes de referencia son:
+
+1 . [Vim en archlinux](https://wiki.archlinux.org/index.php/Vim_%28Espa%C3%B1ol%29).
+
+2 . [Tutorial de Vim](http://www.sromero.org/wiki/linux/aplicaciones/manual_vim).
+
+3 . [Learn Vim Progressively](http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/).
 
 
