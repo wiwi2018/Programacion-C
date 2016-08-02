@@ -1,5 +1,11 @@
 # Programacion en C
 
+
+## Libros
+
+ - C in a Nutshell, 2nd Edition, Peter Prinz, Tony Crawford, O'Reilly Media, 2015.
+ - Grokking Algorithms An illustrated guide for programmers and other curious people, Aditya Y. Bhargava, Manning publishing.
+
 ## Lista de temas 
 
 1. Como compilar y correr programas.
@@ -53,7 +59,7 @@
  - Uso de `typedef`.
  - Macros.
 
-## Lista de Libros de C
+## Lista de Libros de C online 
 
 - [Versión preliminar del libro de C de Jens Gustedt: Modern C](http://icube-icps.unistra.fr/img_auth.php/d/db/ModernC.pdf).
 - [Libro online de C de Zed A. Shaw](http://c.learncodethehardway.org/book/).
