@@ -1,0 +1,131 @@
+\documentclass[11pt,a4paper]{article}
+%\usepackage[utf8x]{inputenc}
+\usepackage[sc]{mathpazo}
+%\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+
+\usepackage{amssymb,latexsym,amsthm,amsmath}
+\usepackage{verbatim}
+\usepackage{graphicx,color,wrapfig}
+\usepackage{psfrag}
+\usepackage[all]{xy}
+\usepackage{tikz}
+%\includepackage{mathabx}
+\usepackage{hyperref}
+\synctex=1
+\usepackage{srcltx}
+%\hypersetup{colorlinks=true,linkcolor=blue}
+
+\sloppy
+\usepackage{multicol}
+\setlength{\topmargin}{-0.75in}
+\setlength{\textheight}{9.85in}
+\setlength{\oddsidemargin}{-0.3in}
+\setlength{\evensidemargin}{-0.3in}
+\setlength{\textwidth}{6.6in}
+
+\def\R{\mathbb R}
+\def\Q{\mathbb Q}
+\def\N{\mathbb N}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+
+\definecolor{light-gray}{gray}{0.85}
+
+
+
+\usepackage{type1cm}
+\usepackage{eso-pic}
+\usepackage{calc}
+\usepackage{forloop}
+
+\newcounter{ber}
+\newcounter{num}
+
+\newcommand{\lef}{\langle}
+\newcommand{\rig}{\rangle}
+
+\makeatletter
+
+\makeatother
+
+
+
+\begin{document}
+
+\begin{center}
+\begin{figure}[ht!]
+\begin{minipage}[c]{0.2\linewidth}
+\includegraphics[scale=0.25]{EscudoUNI.eps}
+\end{minipage}
+\hfill{}
+\begin{minipage}{0,8\columnwidth}
+\centering\flushleft {\large\bf Universidad Nacional de Ingenier\'ia\\
+Facultad de Ciencias\\
+Escuela Profesional de Ciencia de la Computaci\'on\\
+Introducci\'on a la Programaci\'on (CC-102)\\}
+\end{minipage}
+\end{figure}
+\end{center}
+\vspace*{-0.50cm}
+\noindent
+
+\begin{center}
+\textbf{\Large Laboratorio dirigido 6}
+\end{center}
+\textbf{Tema: Arreglos y Cadenas de caracteres \hfill Ciclo: 2015-I}
+\noindent
+\rule{\textwidth}{2pt}
+\newline
+
+
+
+\begin{enumerate}
+\item El tri\'angulo de Pascal es una representaci\'on de los coeficientes binomiales  de $( x+ y)^n = \sum_{ k = 0}^{n}\binom{n}{k}x^{n - k}y^{k}$   ordenados en forma triangular 
+
+
+\begin{tabular}{rccccccccc}
+$n=0$:&    &    &    &    &  1\\\noalign{\smallskip\smallskip}
+$n=1$:&    &    &    &  1 &    &  1\\\noalign{\smallskip\smallskip}
+$n=2$:&    &    &  1 &    &  2 &    &  1\\\noalign{\smallskip\smallskip}
+$n=3$:&    &  1 &    &  3 &    &  3 &    &  1\\\noalign{\smallskip\smallskip}
+$n=4$:&  1 &    &  4 &    &  6 &    &  4 &    &  1\\\noalign{\smallskip\smallskip}
+\end{tabular}
+
+ Escribe un programa que genere el tri\'angulo de Pascal.
+ \item Escribe un algoritmo que genere una permutaci\'on aleatoria de los elementos del arreglo.
+\item Escribe un programa que, dados los contenidos en un vector, calcule e imprima el m\'aximo, el m\'inimo, la media, y la desviaci\'on est\'andar.
+\item \textbf{Algoritmos de Ordenamiento}
+
+\begin{enumerate}
+\item \textit{	Ordenamiento de burbuja } Este algoritmo funciona revisando cada elemento de un arreglo que va a ser ordenado, con el siguiente, intercambi\'andolos de posici\'on si est\'an en el orden equivocado. Escribe un programa que ordene $n$ n\'umeros de forma ascendente usando el ordenamiento de burbuja.
+\item  \textit{	Ordenamiento por inserci\'on } De utilidad para arreglos peque\~nos o en arreglos donde existen cierto grado de orden \texttt{a priori }, este algoritmo consiste en construir un arreglo ordenado tomando de uno a la vez. Escribe un programa que ordene $n$ n\'umeros de forma ascendente usando el ordenamiento por inserci\'on.
+\item  \textit{	Ordenamiento por selecci\'on } En este algoritmo se selecciona o se busca el elemento m\'as peque\~no (o m\'as grande) de todo el conjunto de elementos y se coloca en su posici\'on adecuada. Este proceso se repite para el resto de los elementos del arreglo hasta que todos son analizados. Desarrolle un ordenamiento por selecci\'on (en forma ascendente) de un arreglo de caracteres. Luego contabilice la ocurrencia de cada car\'acter en una sola pasada.
+
+\item \textbf{Mezcla de Arreglos} Consiste en generar un arreglo ordenado a partir de otros \mbox{ordenados} con anterioridad. Para ello se compara  elementos de cada uno de los \mbox{arreglos} de entrada y se coloca el m\'as peque\~no en el arreglo destino, tomando el elemento \mbox{siguiente} del arreglo correspondiente, hasta terminar con todos los elementos de uno de ellos. Luego se copian los elementos no procesados del otro arreglo. Implementar este algoritmo, con arreglos  de n\'umeros de distintas longitudes.
+\end{enumerate}
+
+\item \textbf{B\'usqueda Binaria} Es un algoritmo para localizar la posici\'on de un elemento en un \mbox{arreglo} ordenado. El proceso comienza comparando el elemento del arreglo ubicado en el \mbox{centro} del mismo contra el valor buscado. Si ambos coinciden la b\'usqueda termina. Sino, el valor buscado ser\'a mayor o menor que el valor central y la b\'usqueda continuar\'a, en el \mbox{subarreglo inferior} o superior, para finalizar cuando se encuentra el valor buscado. \mbox{Implementa} el \mbox{algoritmo} en C y encuentra un elemento de un arreglo ordenado, usando una \textit{b\'usqueda \mbox{binaria}.}
+
+\item Desarrolla un algoritmo para representar un sistema lineal de ecuaciones en forma matricial.
+\item Desarrolla un programa que cargue una matriz con la suma de \'indices de fila y columna.
+\item Escribe un programa para calcular la suma o sustracci\'on y traza de dos matrices.
+\item Encuentra la transpuesta de una matriz, a trav\'es del desarrollo de un programa en C.
+\item Escribe un programa para multiplicar dos matrices, usando recursi\'on.
+\item \textit{La eliminaci\'on de Gauss-Jordan} es un algoritmo del \'Algebra Lineal Num\'erica. Se centra en la reducci\'on de un  sistema de ecuaciones a una forma de matriz diagonal por operaciones de fila de tal manera que la soluci\'on es obtenida directamente. Adem\'as, se reduce el tiempo y el esfuerzo invertido en la sustituci\'on hacia atr\'as para encontrar las inc\'ognitas. Escribir un programa que diagonalice una matriz de la siguiente forma:
+
+\begin{enumerate}
+\item  Determine la primera columna (a la izquierda) no cero.
+\item  Si el primer elemento de la columna es cero, intercambielo por un fila que no tenga cero. Multiplicando apropiadamente la fila, h\'agalo $1$. Este primer $1$ se le conoce como pivote.
+\item  Obtengamos ceros arriba y abajo del pivote sumando m\'ultiplos adecuados a las filas debajo de la fila del pivote en la matriz completa.
+\item Cubramos ahora la primera fila y columna de trabajo y repitamos el proceso, \mbox{comenzando} en el paso $(a)$ con la columna siguiente.
+\end{enumerate}
+\item Crea un algoritmo que cargue dos cadenas de caracteres y las concatene. \textbf{Nota:} \textit{Usar la funci\'on \texttt{strcat()}}.
+\item Escribe un programa, que verifique si una cadena es un pol\'indromo. Encuentra los distintos pol\'indromos de las subcadenas de la cadena original.
+\item Desarrolla un programa, que ingrese una cadena de caracteres, y devuelva las versiones en min\'uscula y may\'uscula de esa cadena. \textbf{Nota:} \textit{Usar la funci\'on \texttt{ fgets(), tolower(), toupper()}}.
+\item Desarrolla un programa que encuentra todas las permutaciones de una cadena dada. 
+
+\end{enumerate}
+
+\end{document}
