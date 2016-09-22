@@ -1,0 +1,524 @@
+\documentclass[twoside,10.5pt]{article}%
+\usepackage{minted}   % import the package here                         
+\usepackage{mathrsfs}% 
+\usepackage[sc]{mathpazo}                                          
+\usepackage{pifont}%                                             
+\usepackage{amsmath}%                                            
+\usepackage{amsthm}%                                             
+\usepackage{txfonts}%                                            
+\usepackage{geometry}%                                           
+\usepackage{latexsym}%                                           
+\usepackage{amssymb}%                                            
+\usepackage{graphicx}%                                           
+\usepackage{geometry}%                                           
+\usepackage{xcolor} %                                            
+\geometry{paperheight=28.5cm,paperwidth=21cm,top=2.5cm,%         
+bottom=2.6cm,left=2.5cm,right=2.5cm,headheight=0.8cm,%             
+headsep=0.9cm,textheight=20cm,footskip=1cm}%                   
+\setlength{\parindent}{0pt} \setlength{\parskip}{5pt}%           
+\renewcommand{\baselinestretch}{1.0}%                            *                                                        *
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+{\LARGE{Algunas soluciones de la  dirigida 7}}\\[20pt]
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{enumerate}
+\item Podemos resolver el problema, por ejemplo de dos maneras
+
+\begin{minted}{c}
+#include <stdio.h>
+ 
+int main()
+{
+   int x, y, *a, *b, temp;
+ 
+   printf("Ingresa los valores de x y y \n");
+   scanf("%d%d", &x, &y);
+ 
+   printf("antes del intercambio \nx = %d\ny = %d\n", x, y);
+ 
+   a = &x;
+   b = &y;
+ 
+   temp = *b;
+   *b   = *a;
+   *a   = temp;
+ 
+   printf("Despues del intercambio\nx = %d\ny = %d\n", x, y);
+ 
+   return 0;
+}
+\end{minted}
+
+Otra forma es la siguiente 
+
+\begin{minted}{c}
+/* Program para intercambiar dos numeros dados 
+*/
+
+#include<stdio.h>
+ 
+void  intercambio(int *num1, int *num2) {
+   int temp;
+   temp = *num1;
+   *num1 = *num2;
+   *num2 = temp;
+}
+ 
+int main() {
+   int num1, num2;
+ 
+   printf("Ingresa el primer numero:\n ");
+   scanf("%d", &num1);
+   printf("Ingresa el segundo numero:\n ");
+   scanf("%d", &num2);
+ 
+   intercambio(&num1, &num2);
+ 
+   printf("Primer numero : %d\n", num1);
+   printf("Segundo numero : %d\n", num2);
+ 
+   return  0;
+}
+\end{minted}
+
+
+\item Escribe un programa que encuentre el menor y mayor elemento de un  arreglo num\'erico.
+
+\begin{minted}{c}
+/* Encuentra el mayor menos valor de un array numerico */
+
+
+#include <stdio.h>
+
+#define N 10
+
+
+void max_min(int a[], int n, int *max, int *min);
+
+int main(void)
+{ 
+  
+  int b[N], i,  mayor, menor;
+   printf("Ingresa los  %d numeros:", N);
+     for (i = 0; i < N; i ++)
+     scanf("%d", &b[i]);
+     max_min(b, N, &mayor, &menor);
+    printf("Mayor: %d\n", mayor);
+    printf("Menor: %d\n",  menor);
+     return 0;
+}
+
+void max_min(int a[],  int n, int *max,int *min)
+  {
+     int i;
+     *max = *min = a[0];
+     for (i = 1; i < n; i ++){
+       if (a[i] > *max) 
+	 *max = a[i];
+       else if (a[i] < *min)
+	 *min = a[i];
+     }
+  }
+\end{minted}
+
+\item Escribamos un programa que realiza las operaciones matem\'aticas usuales, con dos n\'umeros ingresados por el usuario. 
+
+
+
+\begin{minted}{c}
+/*
+ * Operaciones con punteros
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+double Sum(double x, double y){return x + y;}
+double Sub(double x, double y){return x - y;}
+double Mul(double x, double y){return x * y;}
+double Div(double x, double y){return x / y;}
+
+// Arreglo de  5 punteros a  funciones que toma doubles como parametro 
+// y retorna double :
+double (*funcTabla[5])(double, double)
+    = { Sum, Sub, Mul, Div, pow }; // Lista a inicializar.
+
+ //Un array de punteros a cadenas para la salida: 
+char *msgTabla[5] = { "Suma", "Diferencia", "Producto", "Cociente", "Potencia" };
+
+int main( )
+{
+   int i;
+   double x = 0, y = 0;
+// Una variable indice
+   
+  printf( "Ingresa dos operandos para alguna operacion: :\n" );
+ if ( scanf( "%lf %lf", &x, &y ) != 2 )
+     printf( "Entrada invalida.\n" );
+ for ( i = 0; i < 5; ++i )
+  printf( "%10s: %6.2f\n", msgTabla[i], funcTabla[i](x, y) );
+      return 0;
+}
+\end{minted}
+
+\item Escribamos un programa, en cada cadena ingresada, sea o no un planeta
+
+\begin{minted}{c}
+/*
+ * Verificando el nombre de los planetas
+ */
+
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_PLANETAS 9
+int main(int argc, char *argv[])
+{
+  
+  char *planetas[] = {"Mercurio", "Venus", "Tierra",
+                   "Marte", "Jupiter", "Saturno", "Urano", 
+		   "Neptune","P1uton"};
+int i, j;
+for (i = 1; i<argc; i++){
+  
+  for (j = 0; j< NUM_PLANETAS; j++)
+      if (strcmp(argv[i], planetas[j]) == 0) {
+	printf("%s es una planeta %d\n", argv[i], j + 1);
+	  break;
+	}
+if (j == NUM_PLANETAS)
+      printf("%s no es un planeta\n", argv[i]);
+    }
+return 0;
+}
+\end{minted}
+
+\item Desarrollemos un programa que calcule promedios. Usamos como ejemplo funciones lineales y cuadr\'aticas 
+
+\begin{minted}{c}
+/* Programa que puede calcular el promedio 
+de cualquier funcion recibida como 
+parametros
+*/
+
+#include <stdio.h>
+
+double promedio(double (*func)(int), int inicio, int fin)
+{
+  double acum = 0.0;
+  int x;
+  
+  for(x = inicio; x < fin; x++)
+    acum += (*func)(x);
+  return acum/(fin -inicio);
+}
+
+/*Funcion Lineal */
+
+double lineal(int x)
+{
+  return (double)x;
+}
+
+/* Funcion cuadratica */
+
+double cuadratica(int x)
+{
+  return (double)x*x;
+}
+
+int main()
+{
+  printf("Promedio de f(x) = x (0 <= x< 10) : %.2f\n", promedio(lineal, 0,10));
+  printf("Promedio de f(x) = x^2 (3 <= x< 17) : %.2f\n", promedio(cuadratica, 3,7));
+  
+  return 0;
+}
+\end{minted}
+
+\item Escribamos un programa en C, que inserte una subcadena en una cadena.
+
+
+\begin{minted}{c}
+/* Programa para ingresar una subcadena
+ * dentro de una cadena
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+ 
+void insert_subcadena(char*, char*, int);
+char* subcadena(char*, int, int);
+ 
+int main()
+{
+   char text[100], subcadena[100];
+   int posicion;
+ 
+   printf("Ingrese algun texto\n");
+   fgets(text,sizeof(text),stdin);
+ 
+   printf("Ingrese la subcadena a ingresar\n");
+   fgets(subcadena, sizeof(subcadena), stdin);
+ 
+   printf("Ingrese la posicion donde quiera poner la subcadena\n");
+   scanf("%d", &posicion);
+ 
+   insert_subcadena(text, subcadena, posicion);
+ 
+   printf("%s\n",text);
+ 
+   return 0;
+}
+ 
+void insert_subcadena(char *a, char *b, int posicion)
+{
+   char *f, *e;
+   int longitud;
+ 
+   longitud = strlen(a);
+ 
+   f = subcadena(a, 1, posicion - 1 );      
+   e = subcadena(a, posicion, longitud-posicion+1);
+ 
+   strcpy(a, "");
+   strcat(a, f);
+   free(f);
+   strcat(a, b);
+   strcat(a, e);
+   free(e);
+}
+ 
+char *subcadena(char *cadena, int posicion, int longitud) 
+{
+   char *pointer;
+   int c;
+ 
+   pointer = malloc(longitud+1);
+ 
+   if( pointer == NULL )
+       exit(EXIT_FAILURE);
+ 
+   for( c = 0 ; c < longitud ; c++ ) 
+      *(pointer+c) = *((cadena+posicion-1)+c);       
+ 
+   *(pointer+c) = '\0';
+ 
+   return pointer;
+}
+\end{minted}
+\item Escribamos un programa que devuelve un n\'umero en orden inverso.
+
+\begin{minted}{c}
+/* Programa que retorna el inverso de un numero
+*/
+#include <stdio.h>
+
+#define N 10
+
+int main (void)
+
+{
+     int a[N], *p;
+     
+    printf("Ingresa los %d numeros: ", N);
+    for (p = a; p < a + N; p++)
+     scanf("%d", p);
+      printf("El numero en orden inverso:");
+
+      for (p= a + N - 1; p>= a; p--)
+      printf("%d ", *p);
+      printf("\n");
+      
+      return 0;
+}
+\end{minted}
+
+
+
+\item Escribamos un programa en C, que ordene una cadena en orden alfab\'etico. El programa s\'olo acepta cadenas en letras min\'usculas.
+
+\begin{minted}{c}
+/*
+ * Programa que ordena una matriz alfabeticamente 
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+void ordenar_cadena(char*);
+ 
+int main()
+{
+   char cadena[100];
+ 
+   printf("Enter some text\n");
+   fgets(cadena, sizeof(cadena), stdin);
+ 
+   ordenar_cadena(cadena);
+   printf("%s\n", cadena);
+ 
+   return 0;
+}
+ 
+void ordenar_cadena(char *s)
+{
+   int c, d = 0, longitud;
+   char *pointer, *resultado, ch;
+ 
+   longitud = strlen(s);
+ 
+   resultado = (char*)malloc(longitud+1);
+ 
+   pointer = s;
+ 
+   for ( ch = 'a' ; ch <= 'z' ; ch++ )
+   {
+      for ( c = 0 ; c < longitud ; c++ )
+      {
+         if ( *pointer == ch )
+         {
+            *(resultado+d) = *pointer;
+            d++;
+         }
+         pointer++;
+      }
+      pointer = s;
+   }
+   *(resultado+d) = '\0';
+ 
+   strcpy(s, resultado);
+   free(resultado);
+}
+\end{minted}
+
+
+\item Escribamos la Criba de Erat\'ostenes, usando punteros
+
+\begin{minted}{c}
+/*
+** Criba de Eratostenes –– calculamos numeros primos usando un arreglo.
+*/
+
+#include <stdlib.h>
+#define SIZE 1000
+#define TRUE 1
+#define FALSE 0
+
+int   main()
+{
+  char   criba[SIZE]; // La criba
+  char *sp;       // El puntero accede a la criba
+  int numero;     // numero que estamos calculando
+ 
+/* Ponemos toda la criba a TRUE */
+   for( sp = criba; sp < &criba[ SIZE ]; )
+     *sp++ = TRUE;
+
+/*
+Procesamos cada numero desde 3  hasta el numero 
+de la criba 
+*/
+   
+for( numero = 3; ; numero += 2 ){
+
+  /*
+   *Ponemos el puntero al elemento propio de la criba
+   *paramos si nos pasamos  
+   */
+  sp = &criba[0] + (numero-3 )/2;
+  if( sp >= &criba[ SIZE ] )
+      break;
+/*
+ * Ahora avanzamos el puntero por multiplos del numero
+ * y colocamos cada subsucesion FALSE.
+*/
+while( sp += numero, sp < &criba[ SIZE ] )
+   *sp = FALSE;
+}
+/*
+* Vamos a traves de la criba y imprimimos los
+*  numeros correspondiendo a las localizaciones que 
+* permanecen TRUE.
+*/
+printf("2\n");
+for( numero = 3, sp = &criba[ 0 ];
+  sp < &criba[ SIZE ]; numero += 2, sp++ ){
+    if( *sp )
+      printf( "%d\n", numero );
+    }
+  return EXIT_SUCCESS;
+}
+\end{minted}
+
+
+\item Escribe un programa en C, que muestra una cadena invertida, a partir de una cadena \mbox{ingresada} por el usuario. Yo uso la \texttt{gets()}\dots. La explicacion del uso de \texttt{fgets()} se har\'a en la clase.
+
+\begin{minted}{c}
+/*
+ * Programa para revertir una cadena en C
+ */
+
+
+#include<stdio.h>
+ 
+int cadena_longitud(char*);
+void reverse(char*);
+ 
+main() 
+{
+   char cadena[100];
+ 
+   printf("Ingresa una cadena \n");
+   //gets(cadena);
+   fgets(cadena, sizeof(cadena), stdin);
+    
+ 
+   reverse(cadena);
+ 
+   printf("La reversa de la cadena ingresada es  \"%s\".\n", cadena);
+ 
+   return 0;
+}
+ 
+void reverse(char *cadena) 
+{
+   int longitud, c;
+   char *inicio, *end, temp;
+ 
+   longitud = cadena_longitud(cadena);
+   inicio  = cadena;
+   end    = cadena;
+ 
+   for (c = 0; c < longitud - 1; c++)
+      end++;
+ 
+   for (c = 0; c < longitud/2; c++)
+   {        
+      temp   = *end;
+      *end   = *inicio;
+      *inicio = temp;
+ 
+      inicio++;
+      end--;
+   }
+}
+ 
+int cadena_longitud(char *pointer)
+{
+   int c = 0;
+ 
+   while( *(pointer + c) != '\0' )
+      c++;
+ 
+   return c;
+}
+\end{minted}
+\end{enumerate}
+\end{document}
