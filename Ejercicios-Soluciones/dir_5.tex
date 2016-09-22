@@ -1,0 +1,99 @@
+\documentclass[10pt,a4paper]{article}
+%\usepackage[utf8x]{inputenc}
+
+%\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+
+\usepackage{amssymb,latexsym,amsthm,amsmath}
+\usepackage{verbatim}
+\usepackage{graphicx,color,wrapfig}
+\usepackage{psfrag}
+\usepackage[all]{xy}
+\usepackage{tikz}
+%\includepackage{mathabx}
+\usepackage{hyperref}
+\synctex=1
+\usepackage{srcltx}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+\sloppy
+\usepackage{multicol}
+\setlength{\topmargin}{-0.99in}
+\setlength{\textheight}{9.95in}
+\setlength{\oddsidemargin}{-0.3in}
+\setlength{\evensidemargin}{-0.3in}
+\setlength{\textwidth}{6.8in}
+
+\def\R{\mathbb R}
+\def\Q{\mathbb Q}
+\def\N{\mathbb N}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+
+\definecolor{light-gray}{gray}{0.85}
+
+
+\usepackage{type1cm}
+\usepackage{eso-pic}
+\usepackage{calc}
+\usepackage{forloop}
+
+\newcounter{ber}
+\newcounter{num}
+
+\newcommand{\lef}{\langle}
+\newcommand{\rig}{\rangle}
+
+\makeatletter
+
+\makeatother
+
+
+\begin{document}
+
+\begin{center}
+\begin{figure}[ht!]
+\begin{minipage}[c]{0.2\linewidth}
+\includegraphics[scale=0.22]{EscudoUNI.eps}
+\end{minipage}
+\hfill{}
+\begin{minipage}{0,8\columnwidth}
+\centering\flushleft {\large\bf Introducci\'on a la Programaci\'on\\
+Escuela Profesional de Ciencia de la Computaci\'on\\
+Facultad de Ciencias\\
+Universidad Nacional de Ingenier\'ia\\}
+\end{minipage}
+\end{figure}
+\end{center}
+\vspace*{-1.2cm}
+\noindent
+
+\begin{center}
+\textbf{\Large Laboratorio dirigido 5}
+\end{center}
+\textbf{Tema: Paso de par\'ametros, alcance de variables y recursividad \hfill Ciclo: 2015-I}
+\noindent
+\rule{\textwidth}{1pt}
+\newline
+%\vspace*{0.5cm}
+
+
+
+Empleando en cada ejercicio la t\'ecnica de recursividad, implemente un programa en el que pida ingresar
+\begin{enumerate}
+\item Un entero positivo $n$ y muestre el valor de la siguiente suma: $$ 1^1 - 2^2 + 3^3 - 4^4 + \ldots n^n. $$
+\item Un entero positivo $n$ y muestre el $n$-\'esimo t\'ermino de la sucesi\'on de Fibonacci.
+\item Un margen de error ($\epsilon > 0$) y muestre el valor de la primera suma parcial que con un margen de error de $\epsilon$ se aproxime al valor de la siguiente serie: 
+$$1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots = \ln(2).$$
+\item Un margen de error ($\epsilon > 0$) y muestre el valor de la primera suma parcial que con un margen de error de $\epsilon$ se aproxime al valor de la siguiente serie: 
+$$\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \cdots = \frac{{\pi}^2}{6}.$$
+\item Una cadena de caracteres $s$ y devuelva todas las combinaciones posibles que se pueden formar a partir de los caracteres de $s$, e.g. entrada: ``sol''; salida: ``sol'', ``slo'', ``osl'', ``ols'', ``lso'', ``los''.
+\item Un n\'umero positivo $b$ y un entero $n$. Luego, muestre el valor de $b^n$.
+\item Dos enteros positivos $a$ y $b$. Luego, muestre el MCD de $a$ y $b$. (Sugerencia: puede usar el Algoritmo de Euclides para calcular el MCD.)
+\item Un entero positivo $n$ y devuelva el n\'umero que resulta de invertir el orden de las cifras de $n$. (Sugerencia: puede emplear una variable global para almacenar el n\'umero a mostrar.)
+\item Un entero positivo $n$ y un entero positivo $k$ menor o igual a $n$. Luego, calcule el n\'umero de combinaciones de $k$ elementos de $n$ elementos dados. (Sugerencia: puede utilizar la identidad abajo mostrada.) $$\binom nk = \binom{n-1}{k-1} + \binom{n-1}k.$$   
+
+\end{enumerate}
+
+\end{document}
