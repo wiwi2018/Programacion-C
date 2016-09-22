@@ -121,5 +121,15 @@ c-lara@Lara:~$sudo apt-get install git
 ```
 
 
+### El paquete de Minted
+
+[Minted](https://www.ctan.org/pkg/minted) es un paquete que permite formatear y resaltar código fuente en LaTeX. Para ejecutar 
+este paquete en Latex, se realiza de la siguiente manera
+
+* Supongamos que tenemos un archivo `Solucion-dir_1.tex`, para producir el archivo `Solucion-dir_1.pdf` se realiza en consola lo siguiente
+
+```bash
+c-lara@Lara:~$pdflatex -shell-escape Solucion-dir_1
+```
 
 
