@@ -1,0 +1,276 @@
+\documentclass[twoside,10.5pt]{article}%
+\usepackage{minted}   % importamos el paquete minted                        
+\usepackage{mathrsfs}% 
+\usepackage[sc]{mathpazo}                                          
+\usepackage{pifont}%                                             
+\usepackage{amsmath}%                                            
+\usepackage{amsthm}%                                             
+\usepackage{txfonts}%                                            
+\usepackage{geometry}%                                           
+\usepackage{latexsym}%                                           
+\usepackage{amssymb}%                                            
+\usepackage{graphicx}%                                           
+\usepackage{geometry}%                                           
+\usepackage{xcolor} %                                            
+\geometry{paperheight=28.5cm,paperwidth=21cm,top=2.5cm,%         
+bottom=2.6cm,left=2.5cm,right=2.5cm,headheight=0.8cm,%             
+headsep=0.9cm,textheight=20cm,footskip=1cm}%                   
+\setlength{\parindent}{0pt} \setlength{\parskip}{5pt}%           
+\renewcommand{\baselinestretch}{1.0}%                            *                                                        *
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+{\LARGE{Soluciones de la dirigida 4}}\\[20pt]
+\end{center}
+
+\vspace{0.3cm}
+
+
+
+
+\begin{minted}{c}
+/* Este programa pide ingresar un entero positivo "n" mayor que 2 
+ * y muestra todos los primos menores o iguales a "n" */
+ 
+#include <stdio.h>
+
+void rombo (int n);
+void tri1 (int n);
+void tri2 (int n);
+
+void main (void)
+{
+	int n;
+	
+	printf("\n Ingrese un entero mayor que 1: ");
+    scanf("%d",&n);
+    
+    printf("\n Rombo de diagonal %d:\n", 2*n + 1);
+	rombo(n);
+	
+	printf("\n Triangulo de altura %d y ancho %d:\n", 2*n - 1, n);
+	tri1(n);
+	
+	printf("\n Triangulo de altura %d y ancho %d:\n", n, 2*n - 1);
+	tri2(n);
+
+	printf("\n");
+}
+
+
+void rombo (int n)
+{
+	int x, y;
+    for (y = -n; y <= n ; y++)
+    {
+        for (x = n; x >= -n; x--)
+            if ( (abs(x) + abs(y)) <= n ) printf("*"); 
+            else printf(" ");
+        printf("\n");
+    }
+}
+
+void tri1 (int n)
+{
+	int x, y;
+    for (y = 1; y < n ; y++)
+    {
+        for (x = 1; x <= y; x++)
+            printf("*");
+        printf("\n");
+    }
+    for (  ; y > 0 ; y--)
+    {
+        for (x = 1; x <= y; x++)
+            printf("*");
+        printf("\n");
+    }
+}
+
+void tri2 (int n)
+{
+	int x, y;
+    for (y = n-1; y >= 0; y--)
+    {
+        for (x = -n+1; x <= n-1; x++)
+            if ( (abs(x) + abs(y)) <= n-1 ) printf("*"); 
+            else printf(" ");
+        printf("\n");
+    }
+}
+\end{minted}
+
+\vspace{0.3cm}
+
+
+\begin{minted}{c}
+/* Este programa pide ingresar dos enteros positivos y muestra
+ el MCD y el MCM de ambos, empleando funciones */
+ 
+#include <stdio.h>
+
+// prototipos de funciones
+int mcd (int a, int b); 
+int mcm (int a, int b);
+
+int main (void)
+{
+	int a,b;
+	
+	printf("\n a: ");
+	scanf("%d", &a);
+	printf(" b: ");
+	scanf("%d", &b);
+
+	printf(" mcd = %d.\n",mcd(a,b));
+	printf(" mcm = %d.\n",mcm(a,b));
+	printf("\n");
+	return 7;		
+}
+
+// funcion que retorna el MCD si se ingresan dos enteros positivos
+int mcd (int a, int b)
+{
+	int d = 1, m;
+	while (d <= a && d <= b)
+	{
+		if (a % d == 0  &&  b % d == 0) m = d;
+		d++;
+	}
+	return m;
+}
+
+// funcion que retorna el MCM si se ingresan dos enteros positivos
+int mcm (int a, int b)
+{
+	int m = mcd(a,b);
+	return (a*b)/m;
+}
+\end{minted}
+
+\vspace{0.3cm}
+
+
+\begin{minted}{c}
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int dot_product(int *, int *, size_t);
+ 
+int
+main(void)
+{
+        int a[3] = {1, 3, -5};
+        int b[3] = {4, -2, -1};
+ 
+        printf("%d\n", dot_product(a, b, sizeof(a) / sizeof(a[0])));
+ 
+        return EXIT_SUCCESS;
+}
+ 
+int
+dot_product(int *a, int *b, size_t n)
+{
+        int sum = 0;
+        size_t i;
+ 
+        for (i = 0; i < n; i++) {
+                sum += a[i] * b[i];
+        }
+ 
+        return sum;
+}
+\end{minted}
+
+\vspace{0.3cm}
+
+
+
+\begin{minted}{c}
+/* Este programa pide ingresar un entero positivo "n" mayor que 2 
+ * y muestra todos los primos menores o iguales a "n" */
+ 
+#include <stdio.h>
+
+int esprimo (int N);
+
+void main (void)
+{
+	int n, i, d, cont;
+	
+	printf("\n Ingrese un entero n mayor que 2: ");
+	scanf("%d", &n);
+	printf(" Los primos menores o iguales a %d son: 2", n);
+	
+	for(i = 3; i < n; i++)
+		if (esprimo(i) == 1) printf(", %d",i);
+	printf(".\n\n");
+}
+
+
+int esprimo (int N)
+{
+	int d = 2, cont = 0;
+	while (d < N && cont == 0)
+	{
+		if (N % d == 0) cont++;
+		d++;
+	}
+	if (cont == 0) return 1;
+	else return 0;
+}
+\end{minted}
+
+
+\vspace{0.3cm}
+
+\begin{minted}{c}
+#include<stdio.h>
+ 
+typedef struct{
+	float i,j,k;
+	}Vector;
+ 
+Vector a = {3, 4, 5},b = {4, 3, 5},c = {-5, -12, -13};
+ 
+float dotProduct(Vector a, Vector b)
+{
+	return a.i*b.i+a.j*b.j+a.k*b.k;
+}
+ 
+Vector crossProduct(Vector a,Vector b)
+{
+	Vector c = {a.j*b.k - a.k*b.j, a.k*b.i - a.i*b.k, a.i*b.j - a.j*b.i};
+ 
+	return c;
+}
+ 
+float scalarTripleProduct(Vector a,Vector b,Vector c)
+{
+	return dotProduct(a,crossProduct(b,c));
+}
+ 
+Vector vectorTripleProduct(Vector a,Vector b,Vector c)
+{
+	return crossProduct(a,crossProduct(b,c));
+}
+ 
+void printVector(Vector a)
+{
+	printf("( %f, %f, %f)",a.i,a.j,a.k);
+}
+ 
+int main()
+{
+	printf("\n a = "); printVector(a);
+	printf("\n b = "); printVector(b);
+	printf("\n c = "); printVector(c);
+	printf("\n a . b = %f",dotProduct(a,b));
+	printf("\n a x b = "); printVector(crossProduct(a,b));
+	printf("\n a . (b x c) = %f",scalarTripleProduct(a,b,c));
+	printf("\n a x (b x c) = "); printVector(vectorTripleProduct(a,b,c));
+ 
+	return 0;
+}
+\end{minted}
+\end{document}
