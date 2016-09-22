@@ -131,5 +131,5 @@ este paquete en Latex, se realiza de la siguiente manera
 ```bash
 c-lara@Lara:~$pdflatex -shell-escape Solucion-dir_1
 ```
-
+Mayor información de Minted en el artículo [Code Highlighting with minted](https://www.sharelatex.com/learn/Code_Highlighting_with_minted).
 
