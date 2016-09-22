@@ -1,0 +1,126 @@
+\documentclass[10pt,a4paper]{article}
+%\usepackage[utf8x]{inputenc}
+
+%\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+
+\usepackage{amssymb,latexsym,amsthm,amsmath}
+\usepackage{verbatim}
+\usepackage{graphicx,color,wrapfig}
+\usepackage{psfrag}
+\usepackage[all]{xy}
+\usepackage{tikz}
+%\includepackage{mathabx}
+\usepackage{hyperref}
+\synctex=1
+\usepackage{srcltx}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+\sloppy
+\usepackage{multicol}
+\setlength{\topmargin}{-0.99in}
+\setlength{\textheight}{9.95in}
+\setlength{\oddsidemargin}{-0.3in}
+\setlength{\evensidemargin}{-0.3in}
+\setlength{\textwidth}{6.8in}
+
+\def\R{\mathbb R}
+\def\Q{\mathbb Q}
+\def\N{\mathbb N}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+
+\definecolor{light-gray}{gray}{0.85}
+
+
+\usepackage{type1cm}
+\usepackage{eso-pic}
+\usepackage{calc}
+\usepackage{forloop}
+
+\newcounter{ber}
+\newcounter{num}
+
+\newcommand{\lef}{\langle}
+\newcommand{\rig}{\rangle}
+
+\makeatletter
+
+\makeatother
+
+
+
+\begin{document}
+
+\begin{center}
+\begin{figure}[ht!]
+\begin{minipage}[c]{0.2\linewidth}
+\includegraphics[scale=0.22]{EscudoUNI.eps}
+\end{minipage}
+\hfill{}
+\begin{minipage}{0,8\columnwidth}
+\centering\flushleft {\large\bf Introducci\'on a la Programaci\'on\\
+Escuela Profesional de Ciencia de la Computaci\'on\\
+Facultad de Ciencias\\
+Universidad Nacional de Ingenier\'i­a\\}
+\end{minipage}
+\end{figure}
+\end{center}
+\vspace*{-1.2cm}
+\noindent
+
+\begin{center}
+\textbf{\Large Laboratorio dirigido 4}
+\end{center}
+\textbf{Tema: Funciones en C \hfill Ciclo: 2015-I}
+\noindent
+\rule{\textwidth}{1pt}
+\newline
+\vspace*{-0.5cm}
+
+
+
+\begin{enumerate}
+
+\item Elaborar un programa que imprima el men\'u mostrado abajo, pida la cantidad a convertir seg\'un la opci\'on ingresada y muestre la conversi\'on. Para ello, se deber\'a crear funciones para realizar cada conversi\'on.
+ \begin{itemize}
+ \item[1.] Cent\'igrados a Fahrenheit
+ \item[2.] Fahrenheit a cent\'igrados
+ \item[3.] Kilogramos a Libras
+ \item[4.] Libras a Kilogramos
+ \item[5.] Salir 
+ \end{itemize}
+\item Cree un programa que pida al usuario ingresar un entero positivo $n$ y muestre, llamando a una funci\'on primo({\bf int} $n$) que retorna 1 si se ingresa un primo y 0 si se ingresa un entero que no es primo, todos los primos menores o iguales a $n$.
+\item Haga un programa que nos permita introducir un entero positivo $n$ y sobre \'el se realicen las siguientes operaciones: comprobar si es primo, hallar su factorial y hallar la suma desde 1 hasta $n$. Cada operaci\'on debe realizarse en una funci\'on. El men\'u debe aparecer hasta que el usuario indique que ha finalizado.
+\item Implemente un program que pida ingresar dos enteros positivos y muestre su MCD y MCM evocando dos funciones mcd({\bf int} a, {\bf int} b) y mcm({\bf int} a, {\bf int} b) que retornan el MCD y MCM, respectivamente, si se ingresan dos enteros positivos.
+%\item Elabore un programa que pida ingresar tres enteros y muestre el m\'inimo, m\'aximo y la media aritm\'etica de ellos mediante tres funciones: min({\bf int} a, {\bf int} b, {\bf int} c), max({\bf int} a, {\bf int} b, {\bf int} c) y med({\bf int} a, {\bf int} b, {\bf int} c).
+\item Cree un programa que lea dos vectores de 3 componentes. Luego, los sume, reste y multiplique, tanto escalar como vectorialmente, imprimiendo despuÃ©s todos estos resultados. Para ello se deber\'a implementar las funciones suma(), resta(), productoEscalar() y productoVectorial().
+\item Implemente un programa que pida el valor de los coeficientes $a$, $b$ y $c$ de la ecuaci\'on cuadr\'atica $$ ax^2 + bx + c = 0,\qquad\mbox{donde}\quad a,b,c\in\R, $$ y muestre las ra\'ices de dicha ecuaci\'on. Para ello se deber\'a implementar tres funciones: realesDiferentes({\bf float} a, {\bf float} b, {\bf float} Delta), realesIguales({\bf float} a, {\bf float} b) y complejas({\bf float} a, {\bf float} b, {\bf float} Delta) que mostrar\'an las ra\'ices en caso el discriminante sea positivo, cero o negativo, respectivamente. 
+\item Implemente un programa tal que al ingresar un entero $n>1$ dibuje:
+ \begin{itemize}
+ \item un rombo cuyas diagonales miden $2n+1$.
+ \item un tri\'angulo de altura $2n-1$ y ancho $n$.
+ \item un tri\'angulo de altura $n$ y ancho $2n-1$.
+ \end{itemize}
+ Para ello se debe implementar 3 funciones: rombo({\bf int} n), tri1({\bf int} n) y tri2({\bf int} n). Por ejemplo, para $n=2$ se tendr\'a:\\
+ \begin{center}
+ \begin{tabular}{ccccc}
+ &&*&&\\
+ &*&*&*&\\
+ *&*&*&*&*\\
+ &*&*&*&\\
+ &&*&&\\ 
+ \\
+ *&&&&\\
+ *&*&&&\\
+ *&&&&\\
+ \\
+  &*&&&\\
+ *&*&*&&\\
+ \end{tabular}
+ \end{center}
+ 
+\end{enumerate}
+
+\end{document}
