@@ -1,0 +1,120 @@
+\documentclass[11pt,a4paper]{article}
+%\usepackage[utf8x]{inputenc}
+\usepackage[sc]{mathpazo}
+%\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+
+\usepackage{amssymb,latexsym,amsthm,amsmath}
+\usepackage{verbatim}
+\usepackage{graphicx,color,wrapfig}
+\usepackage{psfrag}
+\usepackage[all]{xy}
+\usepackage{tikz}
+%\includepackage{mathabx}
+\usepackage{hyperref}
+\synctex=1
+\usepackage{srcltx}
+%\hypersetup{colorlinks=true,linkcolor=blue}
+
+\sloppy
+\usepackage{multicol}
+\setlength{\topmargin}{-0.75in}
+\setlength{\textheight}{9.25in}
+\setlength{\oddsidemargin}{-0.3in}
+\setlength{\evensidemargin}{-0.3in}
+\setlength{\textwidth}{6.6in}
+
+\def\R{\mathbb R}
+\def\Q{\mathbb Q}
+\def\N{\mathbb N}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+
+\definecolor{light-gray}{gray}{0.85}
+
+
+%%%%%%%%%%%% inicio del sello de agua
+\usepackage{type1cm}
+\usepackage{eso-pic}
+\usepackage{calc}
+\usepackage{forloop}
+
+\newcounter{ber}
+\newcounter{num}
+
+\newcommand{\lef}{\langle}
+\newcommand{\rig}{\rangle}
+
+\makeatletter
+\makeatother
+%%%%%%%%%%%% fin del sello de agua
+
+
+\begin{document}
+
+\begin{center}
+\begin{figure}[ht!]
+\begin{minipage}[c]{0.2\linewidth}
+\includegraphics[scale=0.25]{EscudoUNI.eps}
+\end{minipage}
+\hfill{}
+\begin{minipage}{0,8\columnwidth}
+\centering\flushleft {\large\bf Universidad Nacional de Ingenier\'i­a\\
+Facultad de Ciencias\\
+Escuela Profesional de Ciencia de la Computaci\'on\\
+Introducci\'on a la Programaci\'on (CC-102)\\}
+\end{minipage}
+\end{figure}
+\end{center}
+\vspace*{-0.50cm}
+\noindent
+
+\begin{center}
+\textbf{\Large Laboratorio dirigido 3}
+\end{center}
+\textbf{Tema: Estructuras de selecci\'on e iterativas \hfill Ciclo: 2015-I}
+\noindent
+\rule{\textwidth}{2pt}
+\newline
+
+
+\begin{enumerate}
+\item Escribir un programa que lea n\'umeros desde el teclado y imprimir su promedio.
+
+\item Escribir un programa en C, que ingrese un n\'umero y imprime el n\'umero, un d\'igito por l\'inea y su respectivo nombre en ingl\'es. Esto es por ejemplo si ingresas $1234$, la salida debe ser 
+
+$4$  \ \ \ Four
+
+$3$   \ \ \ Three
+
+$2$  \ \ \ Two
+
+$1$   \ \ \ One
+
+\item Un n\'umero es llamado primo, si es divisible por el uno y por el mismo. Escribir un programa que imprima esos n\'umeros en el rango del 1-100.
+\item Los tres lados de un tri\'angulo equil\'atero son iguales, pero solo dos lados son iguales de un tri\'angulo is\'osceles. Si todos los lados del tri\'angulo son de diferente longitud se llama escaleno. Escribir un programa que solicite y lea tres n\'umeros que son la longitud de los tres lados del tri\'angulo. El programa debe determinar que tipo de tri\'angulo es.
+
+\item Realizar un programa para calcular el valor del $\cos(x)$ y el $\sin(x)$ en t\'erminos de series de potencia
+
+\begin{align*}
+\cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} -\cdots = \sum_{n = 0}^{\infty}{\frac{(-1)^nx^{2n}}{(2n)!}}\\
+\sin(x) = x- \frac{x^3}{3!} + \frac{x^5}{5!}- \cdots = \sum_{n = 0}^{\infty}{\frac{(-1)^nx^{2n + 1}}{(2n + 1)!}}.
+\end{align*}
+\textit{Sug: Elegir un valor de precisi\'on.}
+\item Escribir un programa que muestre un diamante de puntos. Algo como  siguiente dise\~no
+
+\begin{center}
+\begin{tabular}{ccccc}
+ &&*&&\\
+ &*&*&*&\\
+ *&*&*&*&*\\
+ &*&*&*&\\
+ &&*&&\\ 
+\end{tabular}
+\end{center} 
+\item Escribir un programa para calcular la media,la varianza y la desviaci\'on est\'andar. Las f\'ormulas usadas aqu\'i son las siguientes: media = promedio de los n\'umeros, la \mbox {varianza} $\sum (X_i - \text{media})^2/\text{Total de elementos}$, donde $i = 1  \text{hasta } N$, donde $N$ es el n\'umero de \mbox{elementos} y la desviaci\'on est\'andar = ra\'iz cuadrada de la varianza. 
+\item Realizar un programa en C, que calcule la suma de $1^2 + 2^2 \dots n^2$.
+\end{enumerate}
+
+\end{document}
