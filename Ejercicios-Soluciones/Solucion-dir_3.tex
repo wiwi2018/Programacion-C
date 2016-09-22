@@ -1,0 +1,422 @@
+\documentclass[twoside,10.5pt]{article}%
+\usepackage{minted}   % importamos el paquete minted                       
+\usepackage{mathrsfs}% 
+\usepackage[sc]{mathpazo}                                          
+\usepackage{pifont}%                                             
+\usepackage{amsmath}%                                            
+\usepackage{amsthm}%                                             
+\usepackage{txfonts}%                                            
+\usepackage{geometry}%                                           
+\usepackage{latexsym}%                                           
+\usepackage{amssymb}%                                            
+\usepackage{graphicx}%                                           
+\usepackage{geometry}%                                           
+\usepackage{xcolor} %                                            
+\geometry{paperheight=28.5cm,paperwidth=21cm,top=2.5cm,%         
+bottom=2.6cm,left=2.5cm,right=2.5cm,headheight=0.8cm,%             
+headsep=0.9cm,textheight=20cm,footskip=1cm}%                   
+\setlength{\parindent}{0pt} \setlength{\parskip}{5pt}%           
+\renewcommand{\baselinestretch}{1.0}%                            *                                                        *
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+{\LARGE{Solucion de la dirigida 3}}\\[20pt]
+\end{center}
+
+\vspace{0.3cm}
+
+
+
+
+\begin{minted}{c}
+/* Lee los numeros desde el teclado
+ * y imprime su promedio
+ */
+
+#include <stdio.h>
+int main( )
+{
+  double x = 0.0, sum = 0.0;
+  int count = 0;
+  
+  printf( "\t--- Calculando Promedios ---\n" );
+  printf( "\nIngresar algunos numeros:\n"
+"(Escribe una letra al final de tu entrada )\n" );
+  
+while (scanf( "%lf", &x ) == 1 )
+{
+  sum += x;
+  ++count;
+}
+
+if ( count == 0 )
+  printf( "No entrada de datos!\n" );
+else
+printf( "El promedio de numeros es %.2f\n", sum/count );
+return 0;
+}
+\end{minted}
+
+\vspace{0.3cm}
+
+\begin{minted}{c}
+#include <stdio.h>
+main ()
+{
+  int i, s, salida_numero;
+  int revnum = 0;
+  printf("Ingresar un numero \n");
+  scanf("%i", &i);
+  while(i > 0)
+  {
+    salida_numero = i% 10;  //quitamos el ultimo digito
+    revnum = revnum * 10 + salida_numero;
+    //printf("%i\n", salida_numero);  
+    i = i/10;
+    
+    s = revnum;
+   // printf("\n\n");
+    while(revnum > 0)
+    {
+      salida_numero = revnum %10; //quitamos el ultimo digito
+      //printf("%i\n", salida_numero);
+      revnum /= 10;
+    }
+    
+   // printf("\n\n");
+    
+    /*Ahora imprimimos cada digito con palabras en ingles
+     */
+    
+    while (s >0)
+    {
+      salida_numero = s % 10;   //quitamos el ultimo digito
+      printf("%i\t", salida_numero);
+      //printf("%s\t", palabras[salida_numero]);
+      
+      switch(salida_numero)
+      {
+	case 0:
+	  printf("Zero\n");
+	  break;
+	case 1:
+	  printf("One\n");
+	  break;
+	case 2:
+	  printf("Two\n");
+	  break;
+	case 3:
+	  printf("Three\n");
+	  break;
+	case 4:
+	  printf("Four\n");
+	  break;
+	case 5:
+	  printf("Five\n");
+	  break;
+	case 6:
+	  printf("Six\n");
+	  break;
+	case 7:
+	  printf("Seven\n");
+	  break;
+	case 8:
+	  printf("Eight\n");
+	  break;
+	case 9:
+	  printf("Nine\n");
+	  break;
+      }
+      
+      s /= 10;   //Dividimos el actual numero por 10
+    }
+    
+  }
+}
+\end{minted}
+
+\vspace{0.3cm}
+
+\begin{minted}{c}
+/*
+ * Calculamos he imprimimos todos los numeros primos
+ */
+
+#include <stdio.h>
+
+int main()
+{
+  int numero;
+  int divisor;
+  
+  /*
+   * Uno y dos son faciles
+   */
+  
+  printf("1\n2\n");
+  
+  
+  /* Solo el numero par 2 es primo...aprovechemos eso
+   */
+  
+  for(numero = 3; numero <= 30; numero = numero + 2){
+    /*
+     * Vemos si el algun divisor desde 3 hasta el numero divide al numero
+     */
+    for(divisor = 3; divisor < numero; divisor = divisor + 2){
+      if (numero %divisor ==0)
+	break;
+    }
+    
+    /*Si el ciclo arriba para debido a que el divisor es 
+     * muy grande, tenemos entonces un numero primo
+     */
+    
+    
+    if(divisor >=numero)
+      printf("%d\n", numero);
+  }
+  
+}
+\end{minted}
+
+
+
+\vspace{0.3cm}
+
+
+\begin{minted}{c}
+/* Clasificando los tipos de triangulo dado
+ * la longitud de sus lados
+ */
+
+#include <stdlib.h>
+#include <stdio.h>
+
+int main()
+{
+  float  a;
+  float  b;
+  float  c;
+  float  temp;
+  
+  /*
+   Solicitamos y leemos los datos
+   */
+  
+  printf("Ingresar las longitudes de los tres lados del triangulo: ");
+  scanf("%f %f %f", &a, &b, &c);
+  
+  /*
+   * Reordenamos los valores tal que a es el de mayor longitud
+   * y c es de menor longitud
+   */
+  
+  
+if( a < b ){
+  
+    temp = a;
+    a = b;
+    b = temp;
+}
+if( a < c ){
+   temp = a;
+   a = c;
+   c = temp;
+}
+if( b < c ){
+   temp = b;
+   b = c;
+   c = temp;
+}
+
+/* Ahora veamos que tipo de triangulo es. Notamos que si
+ * uno de los lados es <= 0 o si dos de lados juntos es 
+ * menor que el mayor, entonces no son triangulos
+ */
+
+if (c <= 0 || 	 b +c  < a)
+  printf("No es un triangulo.\n");
+
+else if(a == b && b==c)
+  printf("Equilatero.\n");
+else if	(a ==b || b ==c)
+  printf("Isosceles.\n");
+else
+  printf("Escaleno.\n");
+return EXIT_SUCCESS;
+}
+\end{minted}
+
+\vspace{0.3cm}
+
+
+\begin{minted}{c}
+/* Programa para diseñar un diamante
+ * con asteriscos 
+ */
+
+#include <stdio.h>
+ 
+int main()
+{
+  int n, c, k, espacio = 1;
+ 
+  printf("Ingresamos el numero de filas \n");
+  scanf("%d", &n);
+ 
+  espacio = n - 1;
+ 
+  for (k = 1; k <= n; k++)
+  {
+    for (c = 1; c <= espacio; c++)
+      printf(" ");
+ 
+    espacio--;
+ 
+    for (c = 1; c <= 2*k-1; c++)
+      printf("*");
+ 
+    printf("\n");
+  }
+ 
+  espacio = 1;
+ 
+  for (k = 1; k <= n - 1; k++)
+  {
+    for (c = 1; c <= espacio; c++)
+      printf(" ");
+ 
+    espacio++;
+ 
+    for (c = 1 ; c <= 2*(n-k)-1; c++)
+      printf("*");
+ 
+    printf("\n");
+  }
+ 
+  return 0;
+}
+\end{minted}
+
+\vspace{0.3cm}
+
+\begin{minted}{c}
+/*
+ *  Un programa donde se ingresan datos y encontramos la media,
+ * la  varianza
+ * y la desviacion estandar 
+ */
+
+
+#include <stdio.h>
+#include <math.h>
+#define MAXSIZE 10
+ 
+void main()
+{
+    float x[MAXSIZE];
+    int  i, n;
+    float promedio, varianza, std, sum = 0, sum1 = 0;
+ 
+    printf("Ingresar el valor de N \n");
+    scanf("%d", &n);
+    printf("Ingresar  %d numeros reales \n", n);
+    for (i = 0; i < n; i++)
+    {
+        scanf("%f", &x[i]);
+    }
+    /*  Calculamos la suma de todos los elementos */
+    for (i = 0; i < n; i++)
+    {
+        sum = sum + x[i];
+    }
+    promedio = sum / (float)n;
+    /*  Calculamos la  varianza  y la desviacion estandar */
+    for (i = 0; i < n; i++)
+    {
+        sum1 = sum1 + pow((x[i] - promedio), 2);
+    }
+    varianza = sum1 / (float)n;
+    std = sqrt(varianza);
+    printf("El promedio de todos los elementos = %.2f\n", promedio);
+    printf("La varianza de todos los elementos = %.2f\n", varianza);
+    printf("La desviacion estandar es = %.2f\n", std);
+}
+
+\end{minted}
+
+
+\vspace{0.5cm}
+
+\begin{minted}{c}
+
+/*
+ * Un programa en C, para calcular la suma de 1^2 + 2^2 + …. + n^2.
+ */
+
+#include <stdio.h>
+ 
+int main()
+{
+    int numero, i;
+    int suma = 0;
+ 
+    printf("Ingreso el maximo valor  para la suma: ");
+    scanf("%d", &numero);
+    suma = (numero * (numero + 1) * (2 * numero + 1 )) / 6;
+    printf("La suma de los elementos de arriba es : ");
+    for (i = 1; i <= numero; i++)
+    {
+        if (i != numero)
+            printf("%d^2 + ", i);
+        else
+            printf("%d^2 = %d ", i, suma);
+    }
+    return 0;
+}
+
+\end{minted}
+\vspace{0.5cm}
+
+\begin{minted}{c}
+
+/*
+ * Un programa para calcular el valor del coseno en terminos de series
+ * dado un grado de precision
+ * 
+ */
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+void main()
+{
+    int n, x1;
+    float presc, term, denominador, x, cosx, cosval;
+ 
+    printf("Ingrese el valor de x (en grados) \n");
+    scanf("%f", &x);
+    x1 = x;
+    /*  Convirtiendo grados a radianes */
+    x = x * (3.142 / 180.0);
+    cosval = cos(x);
+    printf("Ingresar el grado de precision para la funcion \n");
+    scanf("%f", &presc);
+    term = 1;
+    cosx = term;
+    n = 1;
+    do
+    {
+        denominador = 2 * n * (2 * n - 1);
+        term = -term * x * x / denominador;
+        cosx = cosx + term;
+        n = n + 1;
+    } while (presc <= fabs(cosval - cosx));
+    printf("Suma de la serie coseno = %f\n", cosx);
+    printf("Usando la libreria estandar cos(%d) = %f\n", x1, cos(x));
+}
+\end{minted}
+
+
+\end{document}
