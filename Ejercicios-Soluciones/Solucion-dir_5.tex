@@ -1,0 +1,240 @@
+\documentclass[twoside,10.5pt]{article}%
+\usepackage{minted}   % importamos el paquete minted                       
+\usepackage{mathrsfs}% 
+\usepackage[sc]{mathpazo}                                          
+\usepackage{pifont}%                                             
+\usepackage{amsmath}%                                            
+\usepackage{amsthm}%                                             
+\usepackage{txfonts}%                                            
+\usepackage{geometry}%                                           
+\usepackage{latexsym}%                                           
+\usepackage{amssymb}%                                            
+\usepackage{graphicx}%                                           
+\usepackage{geometry}%                                           
+\usepackage{xcolor} %                                            
+\geometry{paperheight=28.5cm,paperwidth=21cm,top=2.5cm,%         
+bottom=2.6cm,left=2.5cm,right=2.5cm,headheight=0.8cm,%             
+headsep=0.9cm,textheight=20cm,footskip=1cm}%                   
+\setlength{\parindent}{0pt} \setlength{\parskip}{5pt}%           
+\renewcommand{\baselinestretch}{1.0}%                            *                                                        *
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+{\LARGE{Soluciones de la dirigida 5}}\\[20pt]
+\end{center}
+
+\vspace{0.3cm}
+
+
+
+
+\begin{minted}{c}
+#include<stdio.h>
+
+int inicio(void); // Prototipo de la función universo
+int muestra(int n); // Prototipo de la función muestra
+int combinatoria(int n, int k); // Prototipo de la función combinatoria
+
+int main()
+{
+	int n,k; 
+	n = inicio();	
+	k = muestra(n);
+	printf("El n\'umero de combinaciones de %d
+	 elemento(s) de %d elemento(s) dado(s) es %d\n",k,n,combinatoria(n,k));	
+}
+
+int inicio(void) // cabecera de la definición universo
+{
+	int ok = 0; 
+	int n; // variable donde almacenar\'e lo que voy a retornar
+	printf("Ingrese un entero positivo: "); 
+	scanf("%d",&n);
+	return n;
+}
+
+int muestra(int n) // cabecera de la definición de la funci\'on muestra
+{
+	int ok = 0; 
+	int k; // variable donde almacenar\'e lo que voy a retornar
+	printf("Ingrese un entero positivo menor o igual a %d: ",n); 
+	scanf("%d",&k);
+	return k;
+}
+		
+int combinatoria(int n, int k) // cabecera de la definición de la función combinatoria
+{
+	if (k == 1)	
+		return n;
+	else
+		if (n == k)
+			return 1;
+		else
+			return combinatoria(n-1,k-1) + combinatoria(n-1,k);
+}
+\end{minted}
+
+
+\vspace{0.3cm}
+
+
+\begin{minted}{c}
+#include<stdio.h>
+
+int ingresar(void); // Prototipo de la función ingresar
+int fibo(int n); // Prototipo de la función fibo
+
+void main()
+{
+	int n; 
+	n = ingresar();
+	printf(" F(%d) = %d.\n\n", n, fibo(n));
+}
+
+int ingresar(void) // cabecera de la definición de la funci\'on exponente
+{
+	int n; // variable donde almacenar\'e lo que voy a retornar
+	printf("\n Ingrese el exponente (n\'umero entero): "); 
+	scanf("%d",&n);
+	return n;
+}
+	
+int fibo(int n) // cabecera de la definición de la función fibo
+{ 
+	if ( n <= 2 ) 
+		return 1; // fibo(1) = fibo (2) = 1
+	else
+		return fibo(n-1) + fibo(n-2); // fibo(n) = fibo(n-1) + fibo(n-2)
+}
+\end{minted}
+
+
+\vspace{0.5cm}
+
+
+\begin{minted}{c}
+#include<stdio.h>
+
+float base(void); // Prototipo de la función base
+int exponente(void); // Prototipo de la función exponente
+float potencia(float b, int n); // Prototipo de la función potencia
+
+int main()
+{
+	float b; 
+	int n; 
+	b = base();	
+	n = exponente();
+	printf("%f elevado a la %d es igual a %f\n",b,n,potencia(b,n));	
+}
+
+float base(void) // cabecera de la definición base
+{
+	int ok = 0; 
+	float b; // variable donde almacenar\'e lo que voy a retornar
+	printf("Ingrese la base (n\'umero positivo): "); 
+	scanf("%f",&b);
+	return b;
+}
+
+int exponente(void) // cabecera de la definición de la funci\'on exponente
+{
+	int n; // variable donde almacenar\'e lo que voy a retornar
+	printf("Ingrese el exponente (n\'umero entero): "); 
+	scanf("%d",&n);
+	return n;
+}
+	
+float potencia(float b, int n) // cabecera de la definición de la función potencia
+{
+	float retorno = 1;
+	if ( n > 0 )
+		retorno = b*potencia(b,n-1);
+	if ( n < 0 )
+		retorno = potencia(b,n+1)/b;
+	return retorno;
+}
+\end{minted}
+
+
+\vspace{0.5cm}
+
+\begin{minted}{c}
+/*
+ * Un programa en C para encontrar el MCD de dos 
+  numeros usando recursion
+ */
+#include <stdio.h>
+ 
+int gcd(int, int);
+ 
+int main()
+{
+    int a, b, resultado;
+ 
+    printf(" Ingresa dos numeros para encontrar el MCD:");
+    scanf("%d%d", &a, &b);
+    resultado = mcd(a, b);
+    printf("El MCD  DE  %d y  %d es %d.\n", a, b, resultado);
+}
+ 
+int mcd(int a, int b)
+{
+    while (a != b)
+    {
+        if (a > b)
+        {
+            return mcd(a - b, b);
+        }
+        else
+        {
+            return mcd(a, b - a);
+        }
+    }
+    return a;
+}
+\end{minted}
+
+\vspace{0.5cm}
+
+
+\begin{minted}{c}
+/*
+ * Un programa para revertir un numero
+ */
+#include <stdio.h>
+#include <math.h>
+ 
+int rev(int, int);
+ 
+int main()
+{
+    int num, resultado;
+    int longitud = 0, temp;
+ 
+    printf("Ingresar un numero entero para revertir: ");
+    scanf("%d", &num);
+    temp = num;
+    while (temp != 0)
+    {
+        longitud++;
+        temp = temp / 10;
+    }
+    resultado = rev(num, longitud);
+    printf("El reverso de  %d es %d.\n", num, resultado);
+    return 0;
+}
+ 
+int rev(int num, int len)
+{
+    if (len == 1)
+    {
+        return num;
+    }
+    else
+    {
+        return (((num % 10) * pow(10, len - 1)) + rev(num / 10, --len));
+    }
+}
+\end{minted}
+\end{document}
