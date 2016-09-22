@@ -1,0 +1,135 @@
+\documentclass[11pt,a4paper]{article}
+%\usepackage[utf8x]{inputenc}
+\usepackage[sc]{mathpazo}
+\usepackage{minted} 
+%\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+\usepackage{amssymb,latexsym,amsthm,amsmath}
+\usepackage{verbatim}
+\usepackage{graphicx,color,wrapfig}
+\usepackage{psfrag}
+\usepackage[all]{xy}
+\usepackage{tikz}
+%\includepackage{mathabx}
+\usepackage{hyperref}
+\synctex=1
+\usepackage{srcltx}
+%\hypersetup{colorlinks=true,linkcolor=blue}
+
+\sloppy
+\usepackage{multicol}
+\setlength{\topmargin}{-0.75in}
+\setlength{\textheight}{9.85in}
+\setlength{\oddsidemargin}{-0.3in}
+\setlength{\evensidemargin}{-0.3in}
+\setlength{\textwidth}{6.6in}
+
+\def\R{\mathbb R}
+\def\Q{\mathbb Q}
+\def\N{\mathbb N}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+
+\definecolor{light-gray}{gray}{0.85}
+
+
+\usepackage{type1cm}
+\usepackage{eso-pic}
+\usepackage{calc}
+\usepackage{forloop}
+
+\newcounter{ber}
+\newcounter{num}
+
+\newcommand{\lef}{\langle}
+\newcommand{\rig}{\rangle}
+
+\makeatletter
+
+\makeatother
+
+
+
+\begin{document}
+
+\begin{center}
+\begin{figure}[ht!]
+\begin{minipage}[c]{0.2\linewidth}
+\includegraphics[scale=0.25]{EscudoUNI.eps}
+\end{minipage}
+\hfill{}
+\begin{minipage}{0,8\columnwidth}
+\centering\flushleft {\large\bf Universidad Nacional de Ingenier\'ia\\
+Facultad de Ciencias\\
+Escuela Profesional de Ciencia de la Computaci\'on\\
+Introducci\'on a la Programaci\'on (CC-102)\\}
+\end{minipage}
+\end{figure}
+\end{center}
+\vspace*{-0.50cm}
+\noindent
+
+\begin{center}
+\textbf{\Large Laboratorio dirigido 7}
+\end{center}
+\textbf{Tema: Introducci\'on a los punteros \hfill Ciclo: 2015-I}
+\noindent
+\rule{\textwidth}{2pt}
+\newline
+
+
+
+\begin{enumerate}
+\item Escribir una versi\'on corregida con punteros del siguiente programa en C
+
+\begin{minted}{c}
+void
+intercambio( int x, int y )
+{
+	int temp;
+
+	temp = x;
+	x = y;
+	y = temp;
+}
+\end{minted}
+\item Usa  punteros, para escribir un programa en C que cuente los caracteres de una cadena.
+\item Escribe un programa que encuentre el menor y mayor elemento de un  arreglo.
+\item Desarrolla un programa que indica si una cadena representa el nombre del planeta, si es as\'i muestra el n\'umero del planeta.  El programa d reconocer una cadena con el nombre del planeta, si esta empieza con letra may\'uscula, de lo contrario, muestra un mensaje.
+\item Escribe un programa que devuelve un n\'umero en orden inverso.
+\item Crea un programa, para el c\'alculo de promedios, que calcule el promedio sobre cualquier otra funci\'on que reciba un entero como par\'ametro y retorne un real con doble precisi\'on. Para ejemplificar el programa escribe una funci\'on lineal y otra cuadr\'atica.
+\item Escribe un programa que realiza las operaciones matem\'aticas usuales, con dos n\'umeros ingresados por el usuario. Notar que estas operaciones son llamadas por punteros que son almacenados en un arreglo definido.
+\item Toma una matriz de n\'umeros enteros y busca el elemento mayor. Para ello se pide hacer uso de un s\'olo \'indice y aritm\'etica de punteros.
+
+\item Escribe un programa en C, que inserte una subcadena en una cadena.
+\item ?` Que se imprime y por qu\'e?. Corregir si es necesario.
+
+\begin{minted}{c}
+#include <stdio.h>
+
+int  main()
+{
+    char *pc  = NULL;
+    int *pi = NULL;
+    double *pd =NULL;
+    
+    printf("\n%d %d %d\n%d %d %d\n\n", (int)(pc +1), (int)(pi +1), (int)(pd +1),
+	   (int)(pc +3), (int)(pi +5), (int)(pd +7));
+    
+}
+\end{minted}
+\item Escribe un programa en C, que ordene una cadena en orden alfab\'etico. El programa s\'olo acepta cadenas en letras min\'usculas.
+
+\item Un n\'umero primo es aquel que es divisible por uno y por si mismo. La criba de Erat\'ostenes es un eficiente algoritmo para calcular los n\'umeros primos. El primer paso del algoritmo es anotar todos los n\'umeros desde el $2$ hasta una l\'imite dado. En el resto del algoritmo, se recorre  la lista y se borra los n\'umeros que no son primos.
+
+Aqu\'i los pasos restantes. Empezando en el inicio de la lista, encontramos el primer n\'umero que no ha sido tachado, el cu\'al debe ser el n\'umero $2$. Tachamos cada  segundo n\'umero de la lista despu\'es del $2$, ya que ellos son m\'ultiplos de $2$. Entonces repetimos esos pasos desde el inicio de la lista. El primer n\'umero de la lista que no es tachado es ahora el $3$, as\'i que tachamos cada tercer n\'umero despu\'es del $3$. El pr\'oximo n\'umero en la lista es el $4$, que fue ya tachado, as\'i que lo saltamos. Cuando tu finalizas este proceso, los n\'umeros que no son tachados, son primos.
+
+Escribe un programa que implemente este algoritmo, usando un arreglo, para tu lista. El valor de cada elemento de la matriz realiza un seguimiento de si el n\'umero correspondiente se ha tachado. Ajusta todos los elementos de la matriz a TRUE inicialmente, y luego ir poniendo FALSE	 seg\'un el algoritmo anterior vaya eliminando.
+
+Nota que ninguno de los n\'umeros pares son primos excepto el $2$. Puedes hacer el programa m\'as eficiente	 haciendo un seguimiento s\'olo de los n\'umeros impares en el arreglo. 
+
+\item Escribe un programa en C, que muestra una cadena invertida, a partir de una cadena \mbox{ingresada} por el usuario.
+\end{enumerate}
+
+\end{document}
