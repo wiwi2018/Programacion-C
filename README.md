@@ -39,7 +39,10 @@
 
 6. Optimización del rendimiento.
  
-7. Introducción a las versiones de control.
+7. Introducción a las versiones de control
+
+ - Introducción Git y Github.
+ - Otras versiones de control
 
 8. El Lenguaje de Programación C.
 
