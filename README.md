@@ -10,6 +10,7 @@
 
 1. Como compilar y correr programas.
  - Escribiendo un programa.
+ - Comparando con otros lenguajes de programación.
  - Compilando y ejecutando un programa en C.
 
 2. El entorno de programación en Linux
@@ -19,6 +20,7 @@
  - Parando o interrupiendo programas.
  - Corriendo tus programas.
  - Redirigiendo entradas y salidas. 
+ - Pequeños script de Bash.
 
 3. Conociendo algunos editores
  - Usando EL EDITOR [nano](https://www.nanotutoriales.com/tutorial-del-editor-de-texto-nano).
