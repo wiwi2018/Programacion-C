@@ -37,7 +37,6 @@
  - El depurador GNU  gdb.
  - Estrategias de depuración.
  - Aplicaciones de gdb.
- - [Valgrind](http://valgrind.org/).
 
 6. Optimización del rendimiento.
  
